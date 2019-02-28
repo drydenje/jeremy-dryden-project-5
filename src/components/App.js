@@ -29,13 +29,33 @@ class App extends Component {
       }
     })
     .then((res) => {
-      // const articles = this.state.articles;
-      console.log("RES", res.data.articles);
+      // let [...temp] = [this.state.articles];
+      
+      let currentState = this.state.articles;
+      console.log(currentState);
+
+      let returnedArticles = res.data.articles;
+      console.log(returnedArticles)
+
+      currentState.push(returnedArticles)
+      console.log(currentState)
+
+      const flatArray = currentState.reduce( (acc,curr) =>{
+        return acc.concat(curr)
+      })
+      console.log(flatArray)
+      // temp.forEach((article) => {
+      //   if(article != undefined) {
+      //     temp.push(article);
+      //     console.log(article);
+      //   }
+      // })
       this.setState({
-        articles: res.data.articles
+        flatArray: flatArray
       });
     })
   }
+
 
   // handleChange = (event) => {
   //   this.setState({
@@ -72,12 +92,27 @@ class App extends Component {
         keywords: newState
       })
       // console.log("keyword array:", this.state.keywords)
-      // this.state.keywords.forEach((item) => {
-      //   console.log(item.keyword);
-      // })
+
+      // let myArticles = this.state.articles;
+      let myArticles = [];
+
+      // console.log("App Articles", myArticles);
+      // for each keyword the user wants to track
+      this.state.keywords.forEach((item) => {
+        // run a search for each keyword, and return no more than 2 results
+            myArticles.push(
+              this.pullArticles(item.keyword, 2)
+            )
+        // console.log(this.pullArticles(item.keyword, 2));
+        // console.log(item.keyword);
+      })
+      // this.setState({
+      //   articles: myArticles
+      // });
+      // console.log("App Articles", myArticles);
     });
 
-    this.pullArticles("iPhone", 5);
+    // this.pullArticles("iPhone", 2);
 
     // Adding in dummy data
     // const dbRef = firebase.database().ref('keywords');

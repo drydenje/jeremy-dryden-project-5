@@ -14,7 +14,9 @@ const Feed = (props) => {
       <main>
          {
             articles.map((article) => {
-               return <Article article={article} key={article.link}/>
+               return (
+                  <Article article={article} key={article.link}/>
+               )
             })
          }
       </main>

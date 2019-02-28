@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import './Header.css';
 
 class Header extends Component {
    render() {
       return(
-         <h1> Watch List</h1>
+         <header>
+            <h1> Watch List</h1>
+         </header>
       )
       }
 }

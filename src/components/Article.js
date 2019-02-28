@@ -2,7 +2,6 @@ import React from 'react';
 import './Article.css'
 
 const Article = (props) => {
-   console.log("Article Props:", props)
    return (
       <article>
          <figure>
