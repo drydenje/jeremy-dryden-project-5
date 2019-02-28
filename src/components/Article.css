@@ -1,0 +1,11 @@
+article {
+   border: 1px dashed blue;
+   margin: 10px;
+   clear: both;
+   padding: 1px;
+}
+
+article img {
+   max-width: 100px;
+   float: left;
+}
