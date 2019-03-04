@@ -3,6 +3,10 @@ article {
    clear: both;
 }
 
+article:nth-child(odd) {
+   background-color: darkgrey;
+}
+
 article img {
    max-width: 200px;
    float: left;
@@ -14,17 +18,26 @@ main .wrapper {
    background-color: lightgrey;
 }
 
-article h1 {
-
-}
-
 article h2 {
    margin: 0;
+}
+
+article h2 a {
+   color: black;
+   text-decoration: none;
+   font-weight: bolder;
 }
 
 article h3 {
    display: block;
    margin: 0 auto;
+   color: #858282;
+}
+
+article h4 {
+   display: block;
+   margin: 0;
+   color: #323232;
 }
 
 article p {
