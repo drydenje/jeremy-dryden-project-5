@@ -1,0 +1,36 @@
+nav {
+
+	display: flex;
+	left: -80vw;
+	transition:all 200ms ease-in-out;
+
+   flex-direction: column;
+   justify-content: flex-start;
+
+	position: absolute;
+	top: 0;
+	height: 100vh;
+	color: white;
+	background: black;
+	width: 80vw;
+}
+
+nav i {
+	color: white;
+	margin: 3px;
+}
+
+nav li {
+	text-transform: capitalize;
+	list-style: none;
+}
+
+input[type="checkbox"] {
+	display: none;
+}
+
+input[type="checkbox"]:checked ~ nav{
+	display: flex;
+	/* transition:all 200ms ease-in-out; */
+	transform:translateX(100%);
+}
