@@ -1,10 +1,44 @@
 article {
-   border: 1px dashed blue;
-   margin: 1rem 0;
+   padding: 1rem;
    clear: both;
 }
 
 article img {
-   max-width: 100px;
+   max-width: 200px;
    float: left;
+   display: none;
+   margin: 0 1rem 1rem 0;
+}
+
+main .wrapper {
+   background-color: lightgrey;
+}
+
+article h1 {
+
+}
+
+article h2 {
+   margin: 0;
+}
+
+article h3 {
+   display: block;
+   margin: 0 auto;
+}
+
+article p {
+   display: none;
+}
+
+@media (min-width: 600px) {
+   article p {
+      display: block;
+   }
+}
+
+@media (min-width: 750px) {
+   article img {
+      display: inline-block;
+   }
 }
