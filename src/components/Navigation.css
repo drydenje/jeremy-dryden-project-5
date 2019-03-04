@@ -20,9 +20,21 @@ nav i {
 	margin: 3px;
 }
 
+nav ul {
+	padding: 0;
+}
+
 nav li {
 	text-transform: capitalize;
 	list-style: none;
+	font-size: 2rem;
+	padding: 1rem;
+	display: flex;
+	justify-content: space-between;
+}
+
+nav li:nth-child(odd) {
+	background-color: #98C1DC;
 }
 
 input[type="checkbox"] {
@@ -33,4 +45,16 @@ input[type="checkbox"]:checked ~ nav{
 	display: flex;
 	/* transition:all 200ms ease-in-out; */
 	transform:translateX(100%);
+}
+
+form {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	margin: 2rem 0;
+}
+
+input[type="text"] {
+	width: 40vw;
+	height: 3vh;
 }

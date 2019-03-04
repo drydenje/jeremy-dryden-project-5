@@ -6,7 +6,6 @@ import Header from './Header';
 import firebase from './firebase';
 import axios from 'axios';
 
-
 import './App.css';
 
 class App extends Component {
