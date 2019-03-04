@@ -5,17 +5,25 @@ header {
    background-size: cover;
    background-position: 50% 50%;
    height: 20vh;
-   /* position: relative; */
+}
+
+header .wrapper {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: start;
 }
 
 header h1 {
-   margin: 0 auto;
-   color: black;
+   margin-bottom: 1rem;
+   color: whitesmoke;
+   align-self: flex-end
 }
 
 header i {
-   position: absolute;
-   top: 10px;
-   right: 10px;
+   /* position: absolute; */
+   /* top: 10px; */
+   /* right: 10px; */
+   margin-top: 0.5rem;
    font-size: 1.4rem;
 }

@@ -7,6 +7,7 @@ import firebase from './firebase';
 import axios from 'axios';
 
 import './App.css';
+import './setup.css'
 
 class App extends Component {
   constructor() {
@@ -146,15 +147,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header/>
+        {/* Skip link */}
+        <a href="#maincontent" className="skip-link">Skip to main content.</a>
 
+        <Header/>
         <Navigation 
           searchTerms = {this.state.keywords}
           addQuery    = {this.handleSubmit}
           removeQuery = {this.removeKeyword}
           inputChange = {this.handleChange}
         />
-
         <Feed articles={this.state.flatArray} />
       </div>
     );

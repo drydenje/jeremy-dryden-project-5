@@ -5,11 +5,12 @@ class Header extends Component {
    render() {
       return(
          <header>
-            <h1>Watchtower</h1>
-            
-            <label htmlFor="navMenu">
-               <i className="fas fa-bars"></i>
-            </label>
+            <div className="wrapper">
+               <h1>Feedwatch</h1>
+               <label htmlFor="navMenu">
+                  <i className="fas fa-bars"></i>
+               </label>
+            </div>
          </header>
       )
    }

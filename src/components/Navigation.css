@@ -13,6 +13,7 @@ nav {
 	color: white;
 	background: black;
 	width: 80vw;
+	/* max-width: 450px; */
 }
 
 nav i {
@@ -47,14 +48,23 @@ input[type="checkbox"]:checked ~ nav{
 	transform:translateX(100%);
 }
 
-form {
+nav form {
 	display: flex;
+	flex-wrap: wrap;
 	flex-direction: row;
-	justify-content: space-evenly;
+	justify-content: space-between;
 	margin: 2rem 0;
+	padding: 0 10px;
 }
 
-input[type="text"] {
-	width: 40vw;
-	height: 3vh;
+nav input[type="text"] {
+	width: 100%;
+	/* width: 50vw; */
+	font-size: 1.3rem;
+}
+
+nav button {
+	font-size: 1.3rem;
+	width: 100%;
+	padding: 0.3rem 0 ;
 }

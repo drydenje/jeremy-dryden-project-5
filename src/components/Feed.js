@@ -28,7 +28,7 @@ class Feed extends Component {
             return (
                // Loop through the array and pass each item to an Article object
                // Uses the article url as the key
-               <main>
+               <main id="maincontent">
                   { 
                      articles.map((article) => {
                         return (
