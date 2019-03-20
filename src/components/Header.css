@@ -1,6 +1,5 @@
 header {
    color: #2b2b2b;
-   /* background-image: url("../assets/background.png"); */
    background: linear-gradient(to bottom, rgba(232,234,236,0.1),rgba(232,234,236,0.1)), url(../assets/background.png);
    background-repeat: no-repeat;
    background-size: cover;
@@ -22,6 +21,10 @@ header h1 {
    align-self: flex-end
 }
 
+header form {
+   align-self: flex-end;
+}
+
 header i {
    /* position: absolute; */
    /* top: 10px; */
@@ -29,4 +32,15 @@ header i {
    margin-top: 0.5rem;
    font-size: 1.4rem;
    z-index: 10;
+}
+
+header input[type="text"] {
+	width: 100%;
+	font-size: 1.3rem;
+}
+
+header button {
+	font-size: 1.3rem;
+	width: 100%;
+	padding: 0.3rem 0 ;
 }
