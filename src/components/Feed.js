@@ -29,7 +29,7 @@ class Feed extends Component {
                // Loop through the array and pass each item to an Article object
                // Uses the article url as the key
                <main id="maincontent">
-                  <div className="wrapper">
+                  {/* // <div className="wrapper"> */}
                   { 
                      articles.map((article) => {
                         return (
@@ -37,7 +37,7 @@ class Feed extends Component {
                         )
                      })
                   }
-                  </div>
+                  {/* </div> */}
                </main>
             )
          } else {

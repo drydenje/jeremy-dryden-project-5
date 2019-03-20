@@ -6,6 +6,10 @@ const Navigation = (props) => {
       <Fragment>
          <input type="checkbox" id="navMenu" />
          <nav>
+            <label htmlFor="navMenu">
+               Close
+               <i class="far fa-times-circle fa-1x"></i>
+            </label>
             <form action="submit" onSubmit={props.addQuery}>
                <input type="text"
                   placeholder="Add a query to watch for"

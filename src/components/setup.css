@@ -11,7 +11,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
     top: 5px;
     z-index: 999;
     background: white;
-    color: black;
+    color: #2b2b2b;
 }
 
 .skip-link:focus {

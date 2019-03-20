@@ -1,10 +1,11 @@
 article {
    padding: 1rem;
    clear: both;
+   width: 100%;
 }
 
 article:nth-child(odd) {
-   background-color: darkgrey;
+   background-color: #f7f5f5;
 }
 
 article img {
@@ -15,7 +16,7 @@ article img {
 }
 
 main .wrapper {
-   background-color: lightgrey;
+   background-color: transparent;
 }
 
 article h2 {
@@ -23,7 +24,7 @@ article h2 {
 }
 
 article h2 a {
-   color: black;
+   color: #2b2b2b;
    text-decoration: none;
    font-weight: bolder;
 }
