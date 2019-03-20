@@ -9,9 +9,9 @@ header {
 
 header .wrapper {
    display: flex;
-   flex-direction: row;
-   justify-content: space-between;
-   align-items: start;
+   flex-direction: column;
+   /* justify-content: space-between; */
+   /* align-items: start; */
    height: 60vh;
 }
 
@@ -34,13 +34,21 @@ header i {
    z-index: 10;
 }
 
+header input, header button {
+   height: 2.5rem;
+   border: 0;
+   display: inline-block;
+   font-size: 1.8rem;
+}
+
 header input[type="text"] {
-	width: 100%;
+   /* width: 70%; */
+   /* padding: 1rem; */
 	font-size: 1.3rem;
 }
 
 header button {
 	font-size: 1.3rem;
-	width: 100%;
-	padding: 0.3rem 0 ;
+	/* width: 30%; */
+	/* padding: 0.3rem 0 ; */
 }

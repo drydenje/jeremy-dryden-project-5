@@ -16,7 +16,7 @@ const Header = (props) => {
             </form>
             <label htmlFor="navMenu">
                {/* <i className="fas fa-bars"></i> */}
-               <a>test</a>
+               <a>Click here to edit your watch list</a>
             </label>
          </div>
       </header>
