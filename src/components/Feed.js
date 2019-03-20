@@ -41,10 +41,10 @@ class Feed extends Component {
                </main>
             )
          } else {
-            return (<h1>Loading...</h1>)
+            return (<h1>Open the menu and add a search term</h1>)
          }
       } else {
-         return (<h1>Loading...</h1>);
+         return (<h1>Open the menu and add a search term</h1>);
       }
    }
 } 
