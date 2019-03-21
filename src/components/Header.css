@@ -40,6 +40,7 @@ header input, header button {
 header input[type="text"] {
    font-size: 1.3rem;
    border-radius: 10px 0 0 10px;
+   width: 20rem;
 }
 
 header button {
