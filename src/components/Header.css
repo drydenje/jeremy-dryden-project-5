@@ -1,6 +1,5 @@
 header {
    color: #2b2b2b;
-   /* background-image: url("../assets/background.png"); */
    background: linear-gradient(to bottom, rgba(232,234,236,0.1),rgba(232,234,236,0.1)), url(../assets/background.png);
    background-repeat: no-repeat;
    background-size: cover;
@@ -10,23 +9,45 @@ header {
 
 header .wrapper {
    display: flex;
-   flex-direction: row;
-   justify-content: space-between;
-   align-items: start;
-   height: 60vh;
+   flex-direction: column;
+   justify-content: flex-end;
+   align-items: center;
+   height: 70vh;
 }
 
 header h1 {
-   margin-bottom: 1rem;
+   margin-bottom: 2rem;
+   font-size: 3rem;
+   display: block;
+   width: 100%;
    color: whitesmoke;
-   align-self: flex-end
 }
 
 header i {
-   /* position: absolute; */
-   /* top: 10px; */
-   /* right: 10px; */
    margin-top: 0.5rem;
    font-size: 1.4rem;
    z-index: 10;
+}
+
+header input, header button {
+   height: 2.5rem;
+   border: 0;
+   display: inline-block;
+   font-size: 1.8rem;
+   padding: 8px;
+}
+
+header input[type="text"] {
+   font-size: 1.3rem;
+   border-radius: 10px 0 0 10px;
+}
+
+header button {
+	font-size: 1.3rem;
+   border-radius: 0 10px 10px 0;
+}
+
+header label div {
+   height: 50px;
+   color: whitesmoke;
 }

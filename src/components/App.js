@@ -150,12 +150,14 @@ class App extends Component {
         {/* Skip link */}
         <a href="#maincontent" className="skip-link">Skip to main content.</a>
 
-        <Header/>
+        <Header
+         addQuery    = {this.handleSubmit}
+         inputChange={this.handleChange}  
+        />
+
         <Navigation 
           searchTerms = {this.state.keywords}
-          addQuery    = {this.handleSubmit}
           removeQuery = {this.removeKeyword}
-          inputChange = {this.handleChange}
         />
         <Feed articles={this.state.flatArray} />
       </div>

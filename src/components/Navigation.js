@@ -10,15 +10,6 @@ const Navigation = (props) => {
                Close
                <i class="far fa-times-circle fa-1x"></i>
             </label>
-            <form action="submit" onSubmit={props.addQuery}>
-               <input type="text"
-                  placeholder="Add a query to watch for"
-                  name="addQuery"
-                  onChange={props.inputChange}
-               />
-               <button type="submit">Add Query</button>
-            </form>
-            
             <ul>
                <li key={'all'}>All</li>
             {
