@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Header.css';
 
 const Header = (props) => {
@@ -16,7 +16,7 @@ const Header = (props) => {
             </form>
             <label htmlFor="navMenu">
                {/* <i className="fas fa-bars"></i> */}
-               <a>Click here to edit your watch list</a>
+               <div>Click HERE to edit your watch list</div>
             </label>
          </div>
       </header>
