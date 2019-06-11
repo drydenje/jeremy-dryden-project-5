@@ -47,6 +47,7 @@ class App extends Component {
         addQuery:'',
       });
     }
+    e.val('')
   }
 
   // ✅ Used for pulling search queries the user supplied
