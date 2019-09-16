@@ -5,6 +5,7 @@ import Header from "./Header";
 
 import firebase from "./firebase";
 import axios from "axios";
+import qs from "qs";
 
 import "./App.css";
 import "./setup.css";
@@ -112,15 +113,26 @@ class App extends Component {
   // it will return a flattened array of article objects
   pullArticles = (searchQuery, maxArticles) => {
     axios
-      .get("https://gnews.io/api/v2/", {
+      .get("https://proxy.hackeryou.com", {
+        dataResponse: "json",
+        paramsSerializer: function(params) {
+          return qs.stringify(params, { arrayFormat: "brackets" });
+        },
         params: {
-          q: searchQuery,
-          token: process.env.REACT_APP_GKEY,
-          max: maxArticles,
-          in: "title"
+          reqUrl: "https://gnews.io/api/v2/",
+          params: {
+            q: searchQuery,
+            token: process.env.REACT_APP_GKEY,
+            max: maxArticles,
+            in: "title"
+          },
+          xmlToJSON: false,
+          useCache: false
         }
       })
       .then(res => {
+        console.log("RES:", res);
+
         // take a copy of the current list of articles (in state)
         let currentState = this.state.articles;
         // the returned articles from the recent api call

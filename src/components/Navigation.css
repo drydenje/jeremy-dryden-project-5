@@ -1,78 +1,76 @@
 nav {
+  display: flex;
+  left: -320px;
+  transition: all 200ms ease-in-out;
 
-	display: flex;
-	left: -320px;
-	transition:all 200ms ease-in-out;
+  flex-direction: column;
+  justify-content: flex-start;
 
-   flex-direction: column;
-   justify-content: flex-start;
-
-	position: absolute;
-	top: 0;
-	height: 100vh;
-	color: white;
-	background: #2b2b2b;
-	width: 320px;
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  color: white;
+  background: #2b2b2b;
+  width: 320px;
 }
 
 nav label {
-   text-align: right;
-   display: block;
-   margin: 1rem;
+  text-align: right;
+  display: block;
+  margin: 1rem;
 }
 
 nav i {
-	color: white;
-	margin: 3px;
+  color: white;
+  margin: 3px;
 }
 
 nav ul {
-	padding: 0;
+  padding: 0;
 }
 
 nav li {
-	text-transform: capitalize;
-	list-style: none;
-	font-size: 2rem;
-	padding: 1rem;
-	display: flex;
-   justify-content: space-between;
-   
+  text-transform: capitalize;
+  list-style: none;
+  font-size: 2rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 nav li:nth-child(odd) {
-   color: #2b2b2b;
-	background-color: #f7f5f5;
+  color: #2b2b2b;
+  background-color: #f7f5f5;
 }
 
 nav li:nth-child(odd) i {
-   color: #2b2b2b;
+  color: #2b2b2b;
 }
 
 input[type="checkbox"] {
-	display: none;
+  display: none;
 }
 
-input[type="checkbox"]:checked ~ nav{
-	transform:translateX(100%);
+input[type="checkbox"]:checked ~ nav {
+  transform: translateX(100%);
 }
 
 nav form {
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: row;
-	justify-content: space-between;
-	margin: 2rem 0;
-	padding: 0 10px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 2rem 0;
+  padding: 0 10px;
 }
 
 nav input[type="text"] {
-	width: 100%;
-	font-size: 1.3rem;
+  width: 100%;
+  font-size: 1.3rem;
 }
 
 nav button {
-	font-size: 1.3rem;
-	width: 100%;
-	padding: 0.3rem 0 ;
+  font-size: 1.3rem;
+  width: 100%;
+  padding: 0.3rem 0;
 }
