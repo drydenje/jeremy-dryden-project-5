@@ -48,7 +48,7 @@ class App extends Component {
         addQuery: ""
       });
     }
-    e.val("");
+    e.target.reset();
   };
 
   // ✅ Used for pulling search queries the user supplied
@@ -131,8 +131,6 @@ class App extends Component {
         }
       })
       .then(res => {
-        console.log("RES:", res);
-
         // take a copy of the current list of articles (in state)
         let currentState = this.state.articles;
         // the returned articles from the recent api call

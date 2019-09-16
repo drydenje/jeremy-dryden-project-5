@@ -17,7 +17,13 @@ const Navigation = props => {
               <li key={item.key}>
                 {item.keyword}
                 <span>
-                  <a href="#0" onClick={() => props.removeQuery(item.key)}>
+                  <a
+                    href="#0"
+                    onClick={e => {
+                      e.preventDefault();
+                      props.removeQuery(item.key);
+                    }}
+                  >
                     <i className="far fa-times-circle" />
                   </a>
                 </span>
