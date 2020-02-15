@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Navigation from "../Navigation/Navigation";
+import Navigation from "../../components/Navigation/Navigation";
 import Feed from "../Feed/Feed";
-import Header from "../Header/Header";
+import Header from "../../components/Header/Header";
 
-import firebase from "../firebase";
+import firebase from "../../components/firebase";
 import axios from "axios";
 import qs from "qs";
 
