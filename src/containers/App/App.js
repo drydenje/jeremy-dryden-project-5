@@ -119,7 +119,7 @@ class App extends Component {
           return qs.stringify(params, { arrayFormat: "brackets" });
         },
         params: {
-          reqUrl: "https://gnews.io/api/v3/search",
+          reqUrl: "https://gnews.io/api/v2/",
           params: {
             q: searchQuery,
             token: process.env.REACT_APP_GKEY,
