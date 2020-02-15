@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Navigation from "./Navigation";
-import Feed from "./Feed";
-import Header from "./Header";
+import Navigation from "../Navigation/Navigation";
+import Feed from "../Feed/Feed";
+import Header from "../Header/Header";
 
-import firebase from "./firebase";
+import firebase from "../firebase";
 import axios from "axios";
 import qs from "qs";
 
@@ -119,7 +119,7 @@ class App extends Component {
           return qs.stringify(params, { arrayFormat: "brackets" });
         },
         params: {
-          reqUrl: "https://gnews.io/api/v2/",
+          reqUrl: "https://gnews.io/api/v3/search",
           params: {
             q: searchQuery,
             token: process.env.REACT_APP_GKEY,
