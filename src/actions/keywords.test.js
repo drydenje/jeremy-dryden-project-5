@@ -1,4 +1,4 @@
-import { addKeyword, removeKeyword, clearKeywords } from "./actions";
+import { addKeyword, removeKeyword, clearKeywords } from "./keywords";
 
 test("should setup ADD_KEYWORD action object with a passed string", () => {
   const searchTerm = "Microsoft";
