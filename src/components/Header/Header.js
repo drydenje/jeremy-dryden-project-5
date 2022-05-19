@@ -1,11 +1,11 @@
 import React from "react";
 import "./Header.css";
 
-const Header = props => {
+const Header = (props) => {
   return (
     <header>
       <div className="wrapper">
-        <h1>Feedwatch</h1>
+        <h1>Feedwatch 2</h1>
         <form action="submit" onSubmit={props.addQuery}>
           <input
             type="text"
