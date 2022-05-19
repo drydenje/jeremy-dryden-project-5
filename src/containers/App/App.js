@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import Navigation from "../../components/Navigation/Navigation";
-import Feed from "../Feed/Feed";
+// import Feed from "../Feed/Feed";
 import Header from "../../components/Header/Header";
 
-import firebase from "../../components/firebase";
+import { getDatabase, ref, onValue } from "firebase/database";
+import firebase from "../../components/firebase.js";
+
 import axios from "axios";
 import qs from "qs";
 
@@ -17,60 +19,69 @@ class App extends Component {
       keywords: [],
       articles: [],
       flatArray: [],
-      addQuery: ""
+      addQuery: "",
     };
   }
 
   // ✅ when passed a unique id, it will try to delete the keyword from the database
-  removeKeyword = queryId => {
-    // make sure to pass the path to the variable (ie: /keywords)
-    const dbRef = firebase.database().ref(`/keywords/${queryId}`);
-    dbRef.remove();
-  };
+  // removeKeyword = (queryId) => {
+  //   // make sure to pass the path to the variable (ie: /keywords)
+  //   const dbRef = firebase.database().ref(`/keywords/${queryId}`);
+  //   dbRef.remove();
+  // };
 
   // ✅ deals with any input box changes
-  handleChange = event => {
-    // when the user types into a checkbox, a state variable with the same name as the checkbox will be updated
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  };
+  // handleChange = (event) => {
+  //   // when the user types into a checkbox, a state variable with the same name as the checkbox will be updated
+  //   this.setState({
+  //     [event.target.name]: event.target.value,
+  //   });
+  // };
 
   // when the 'add query' button is pressed
-  handleSubmit = e => {
-    // don't refresh the page
-    e.preventDefault();
-    // check if it's empty, ignore the submit if it is
-    if (this.state.addQuery !== "") {
-      const dbRef = firebase.database().ref("keywords");
-      dbRef.push(this.state.addQuery);
-      this.setState({
-        addQuery: ""
-      });
-    }
-    e.target.reset();
-  };
+  // handleSubmit = (e) => {
+  //   // don't refresh the page
+  //   e.preventDefault();
+  //   // check if it's empty, ignore the submit if it is
+  //   if (this.state.addQuery !== "") {
+  //     const dbRef = firebase.database().ref("keywords");
+  //     dbRef.push(this.state.addQuery);
+  //     this.setState({
+  //       addQuery: "",
+  //     });
+  //   }
+  //   e.target.reset();
+  // };
 
   // ✅ Used for pulling search queries the user supplied
   pullKeywords = () => {
     // Request a list of keywords to be searched (from Firebase)
     // connect to firebase and pull the user supplied search terms
-    const dbRef = firebase.database().ref("keywords");
-    dbRef.on("value", response => {
-      const newState = [];
-      const data = response.val();
-      for (let key in data) {
-        newState.push({
-          key: key,
-          keyword: data[key]
-        });
-      }
 
-      // set state.keywords to the retrieved values
-      this.setState({
-        keywords: newState
-      });
-    });
+    // const dbRef = firebase.database().ref("keywords");
+    const database = getDatabase(firebase);
+    const dbRef = ref(database);
+
+    // dbRef.on("value", (response) => {
+    onValue(
+      dbRef,
+      (response) => {
+        const newState = [];
+        const data = response.val();
+        for (let key in data) {
+          newState.push({
+            key: key,
+            keyword: data[key],
+          });
+        }
+
+        // set state.keywords to the retrieved values
+        this.setState({
+          keywords: newState,
+        });
+      },
+      []
+    );
   };
 
   // ✅ Fires after the component mounts, main logic starts out here
@@ -93,62 +104,66 @@ class App extends Component {
     // clear the articles and flatArray states
     this.setState({
       articles: [],
-      flatArray: []
+      flatArray: [],
     });
 
     // define a temporary variable of objects to hold the returned articles
     let myArticles = [];
     // for each keyword the user wants to track
 
-    this.state.keywords.forEach(item => {
+    this.state.keywords.forEach((item) => {
       // run a search for each keyword, and return no more than 'X' results
       myArticles.push(this.pullArticles(item.keyword, 2));
     });
     this.setState({
-      flatArray: myArticles
+      flatArray: myArticles,
     });
   };
 
   // given: a term to search, and the maximum number of results to return
   // it will return a flattened array of article objects
   pullArticles = (searchQuery, maxArticles) => {
-    axios
-      .get("https://proxy.hackeryou.com", {
-        dataResponse: "json",
-        paramsSerializer: function(params) {
-          return qs.stringify(params, { arrayFormat: "brackets" });
-        },
-        params: {
-          reqUrl: "https://gnews.io/api/v2/",
-          params: {
-            q: searchQuery,
-            token: process.env.REACT_APP_GKEY,
-            max: maxArticles,
-            in: "title"
-          },
-          xmlToJSON: false,
-          useCache: false
-        }
-      })
-      .then(res => {
-        // take a copy of the current list of articles (in state)
-        let currentState = this.state.articles;
-        // the returned articles from the recent api call
-        let returnedArticles = res.data.articles;
+    // axios
+    //   .get("https://proxy.hackeryou.com", {
+    //     dataResponse: "json",
+    //     paramsSerializer: function (params) {
+    //       return qs.stringify(params, { arrayFormat: "brackets" });
+    //     },
+    //     params: {
+    //       reqUrl: "https://gnews.io/api/v4/",
+    //       params: {
+    //         q: searchQuery,
+    //         token: process.env.REACT_APP_GKEY,
+    //         max: maxArticles,
+    //         in: "title",
+    //       },
+    //       xmlToJSON: false,
+    //       // useCache: false,
+    //     },
+    //   })
+    fetch(
+      "https://gnews.io/api/v4/?${searchQuery}&token=${process.env.REACT_APP_GKEY}"
+    ).then((res) => {
+      console.log(res);
 
-        // take the recently returned articles and push them to the current state
-        currentState.push(returnedArticles);
+      // // take a copy of the current list of articles (in state)
+      // let currentState = this.state.articles;
+      // // the returned articles from the recent api call
+      // let returnedArticles = res.data.articles;
 
-        // since the currentState array is deeply nested, we need to flatten it
-        const flatArray = currentState.reduce((acc, curr) => {
-          return acc.concat(curr);
-        });
+      // // take the recently returned articles and push them to the current state
+      // currentState.push(returnedArticles);
 
-        // finally, we set the newly flattened array to state
-        this.setState({
-          flatArray: flatArray
-        });
-      });
+      // // since the currentState array is deeply nested, we need to flatten it
+      // const flatArray = currentState.reduce((acc, curr) => {
+      //   return acc.concat(curr);
+      // });
+
+      // // finally, we set the newly flattened array to state
+      // this.setState({
+      //   flatArray: flatArray,
+      // });
+    });
   };
 
   // ✅ Main rendering logic goes here
@@ -162,11 +177,11 @@ class App extends Component {
 
         <Header addQuery={this.handleSubmit} inputChange={this.handleChange} />
 
-        <Navigation
+        {/* <Navigation
           searchTerms={this.state.keywords}
           removeQuery={this.removeKeyword}
-        />
-        <Feed articles={this.state.flatArray} />
+        /> */}
+        {/* <Feed articles={this.state.flatArray} /> */}
       </div>
     );
   }
