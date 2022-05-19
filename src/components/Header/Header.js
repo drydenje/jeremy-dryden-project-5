@@ -5,7 +5,7 @@ const Header = (props) => {
   return (
     <header>
       <div className="wrapper">
-        <h1>Feedwatch 2</h1>
+        <h1>Feedwatch 3</h1>
         <form action="submit" onSubmit={props.addQuery}>
           <input
             type="text"
