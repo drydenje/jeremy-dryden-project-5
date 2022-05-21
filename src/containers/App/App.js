@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import Navigation from "../../components/Navigation/Navigation";
+// import Navigation from "../../components/Navigation/Navigation";
 // import Feed from "../Feed/Feed";
 import Header from "../../components/Header/Header";
 
 import { getDatabase, ref, onValue } from "firebase/database";
 import firebase from "../../components/firebase.js";
 
-import axios from "axios";
-import qs from "qs";
+// import axios from "axios";
+// import qs from "qs";
 
 import "./App.css";
 import "./setup.css";
@@ -18,7 +18,6 @@ class App extends Component {
     this.state = {
       keywords: [],
       articles: [],
-      flatArray: [],
       addQuery: "",
     };
   }
@@ -31,27 +30,27 @@ class App extends Component {
   // };
 
   // ✅ deals with any input box changes
-  // handleChange = (event) => {
-  //   // when the user types into a checkbox, a state variable with the same name as the checkbox will be updated
-  //   this.setState({
-  //     [event.target.name]: event.target.value,
-  //   });
-  // };
+  handleChange = (event) => {
+    // when the user types into a checkbox, a state variable with the same name as the checkbox will be updated
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  };
 
   // when the 'add query' button is pressed
-  // handleSubmit = (e) => {
-  //   // don't refresh the page
-  //   e.preventDefault();
-  //   // check if it's empty, ignore the submit if it is
-  //   if (this.state.addQuery !== "") {
-  //     const dbRef = firebase.database().ref("keywords");
-  //     dbRef.push(this.state.addQuery);
-  //     this.setState({
-  //       addQuery: "",
-  //     });
-  //   }
-  //   e.target.reset();
-  // };
+  handleSubmit = (e) => {
+    // don't refresh the page
+    e.preventDefault();
+    // check if it's empty, ignore the submit if it is
+    if (this.state.addQuery !== "") {
+      const dbRef = ref("keywords");
+      dbRef.push(this.state.addQuery);
+      this.setState({
+        addQuery: "",
+      });
+    }
+    e.target.reset();
+  };
 
   // ✅ Used for pulling search queries the user supplied
   pullKeywords = () => {
@@ -66,18 +65,21 @@ class App extends Component {
     onValue(
       dbRef,
       (response) => {
-        const newState = [];
+        // const newState = [];
         const data = response.val();
-        for (let key in data) {
-          newState.push({
-            key: key,
-            keyword: data[key],
-          });
-        }
+        // console.log(data.keywords);
+        // for (let key in data) {
+        //   console.log("Key:", key);
+        //   // newState.push({
+        //   //   key: key,
+        //   //   keyword: data[key],
+        //   // });
+        // }
 
         // set state.keywords to the retrieved values
+        // console.log("NewState Final:", newState);
         this.setState({
-          keywords: newState,
+          keywords: data.keywords,
         });
       },
       []
@@ -88,14 +90,14 @@ class App extends Component {
   componentDidMount() {
     // pull a list of keywords from firebase
     // - these will be used to search news articles later on
-    this.pullKeywords();
+    // this.pullKeywords();
   }
 
   // usually called after state is updated
   componentDidUpdate(prevProps, prevState) {
     // make sure to only update the list if a keyword has been added or removed
     if (prevState.keywords !== this.state.keywords) {
-      this.updateFeed();
+      // this.updateFeed();
     }
   }
 
@@ -123,8 +125,21 @@ class App extends Component {
   // given: a term to search, and the maximum number of results to return
   // it will return a flattened array of article objects
   pullArticles = (searchQuery, maxArticles) => {
+    console.log(searchQuery);
+    const term = "airpods";
+    // const fetchUrl2 ="https://gnews.io/api/v4/search?q=example&token=4f12db3888cd831e2d6a8ad29b618082";
+    const fetchUrl = `https://gnews.io/api/v4/search?q=${term}&max=${maxArticles}&token=${process.env.REACT_APP_GKEY}`;
+
+    fetch(fetchUrl)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data.articles);
+      });
+
     // axios
-    //   .get("https://proxy.hackeryou.com", {
+    //   .get("https://pacific-eyrie-44772.herokuapp.com/", {
     //     dataResponse: "json",
     //     paramsSerializer: function (params) {
     //       return qs.stringify(params, { arrayFormat: "brackets" });
@@ -141,29 +156,24 @@ class App extends Component {
     //       // useCache: false,
     //     },
     //   })
-    fetch(
-      "https://gnews.io/api/v4/?${searchQuery}&token=${process.env.REACT_APP_GKEY}"
-    ).then((res) => {
-      console.log(res);
 
-      // // take a copy of the current list of articles (in state)
-      // let currentState = this.state.articles;
-      // // the returned articles from the recent api call
-      // let returnedArticles = res.data.articles;
+    // // take a copy of the current list of articles (in state)
+    // let currentState = this.state.articles;
+    // // the returned articles from the recent api call
+    // let returnedArticles = res.data.articles;
 
-      // // take the recently returned articles and push them to the current state
-      // currentState.push(returnedArticles);
+    // // take the recently returned articles and push them to the current state
+    // currentState.push(returnedArticles);
 
-      // // since the currentState array is deeply nested, we need to flatten it
-      // const flatArray = currentState.reduce((acc, curr) => {
-      //   return acc.concat(curr);
-      // });
+    // // since the currentState array is deeply nested, we need to flatten it
+    // const flatArray = currentState.reduce((acc, curr) => {
+    //   return acc.concat(curr);
+    // });
 
-      // // finally, we set the newly flattened array to state
-      // this.setState({
-      //   flatArray: flatArray,
-      // });
-    });
+    // // finally, we set the newly flattened array to state
+    // this.setState({
+    //   flatArray: flatArray,
+    // });
   };
 
   // ✅ Main rendering logic goes here
