@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import Navigation from "../../components/Navigation/Navigation";
-// import Feed from "../Feed/Feed";
+import Feed from "../Feed/Feed";
 import Header from "../../components/Header/Header";
 
 import { getDatabase, ref, onValue } from "firebase/database";
@@ -191,7 +191,7 @@ class App extends Component {
           searchTerms={this.state.keywords}
           removeQuery={this.removeKeyword}
         /> */}
-        {/* <Feed articles={this.state.flatArray} /> */}
+        <Feed />
       </div>
     );
   }
