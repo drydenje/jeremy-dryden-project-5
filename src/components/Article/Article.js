@@ -2,7 +2,6 @@ import React from "react";
 import "./Article.css";
 
 const Article = ({ article }) => {
-  console.log(article);
   const date = new Date(article.publishedAt).toLocaleDateString("en-us");
   const time = new Date(article.publishedAt).toLocaleTimeString("en-us");
 

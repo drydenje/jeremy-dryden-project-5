@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import Navigation from "../../components/Navigation/Navigation";
+import Navigation from "../../components/Navigation/Navigation";
 import Feed from "../Feed/Feed";
 import Header from "../../components/Header/Header";
 
@@ -187,10 +187,7 @@ class App extends Component {
 
         <Header addQuery={this.handleSubmit} inputChange={this.handleChange} />
 
-        {/* <Navigation
-          searchTerms={this.state.keywords}
-          removeQuery={this.removeKeyword}
-        /> */}
+        <Navigation />
         <Feed />
       </div>
     );
