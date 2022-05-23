@@ -16,20 +16,27 @@ export const Feed = () => {
   // });
 
   // check if there is data to display
-
-  const arr = Object.keys(articles);
-  console.log(arr);
+  const keywords = Object.keys(articles);
+  const renderedArticles = keywords.map((keyword) => {
+    // console.log("A:", articles[keyword][0].url);
+    // console.log("A:", articles[keyword]);
+    return articles[keyword].map((article) => {
+      // console.log(article);
+      return <Article article={article} key={article.url} />;
+    });
+  });
 
   return (
     // Loop through the array and pass each item to an Article object
     // Uses the article url as the key
-    <main id="maincontent">
-      {/* {articles.map((article) => {
+    <main id="maincontent">{renderedArticles}</main>
+  );
+
+  /* {articles.map((article) => {
         console.log("A:", article);
         return <Article article={article} key={article.link} />;
-      })} */}
-    </main>
-  );
+      })} */
+
   //   } else {
   //     return (
   //       <div className="wrapper">
