@@ -4,11 +4,10 @@ import "./Navigation.css";
 
 const Navigation = () => {
   const keywords = useSelector((state) => state.keywords);
-  const keys = Object.keys(keywords);
-  const renderedKeywords = keys.map((key) => {
+  const renderedKeywords = keywords.map((item) => {
     return (
-      <li key={key}>
-        {keywords[key]}
+      <li key={item.key}>
+        {item.keyword}
         <span>
           <a
             href="#0"
