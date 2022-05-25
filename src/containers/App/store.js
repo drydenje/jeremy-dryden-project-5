@@ -4,7 +4,7 @@ import navigationReducer from "../../components/Navigation/navigationSlice";
 
 export default configureStore({
   reducer: {
-    keywords: navigationReducer,
     articles: feedReducer,
+    keywords: navigationReducer,
   },
 });
