@@ -47,14 +47,19 @@ export const feedSlice = createSlice({
   name: "articles",
   initialState,
   reducers: {
-    addArticles: (state) => {
-      state.value = {
-        test: ["one", "two", "three"],
-      };
+    addArticles: (state, action) => {
+      state.push(action.payload);
+    },
+    clearArticles: (state, action) => {
+      // clear all of the articles
+      state.articles = {};
+    },
+    removeKeyword: (state, action) => {
+      // remove a specific keyword and the articles related to it
     },
   },
 });
 
-export const { addArticles } = feedSlice.actions;
+export const { addArticles, clearArticles, removeKeyword } = feedSlice.actions;
 
 export default feedSlice.reducer;

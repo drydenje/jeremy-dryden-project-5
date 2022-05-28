@@ -1,27 +1,28 @@
 import React from "react";
 import "./Article.css";
 
-const Article = props => {
-  const date = new Date(props.article.date).toLocaleDateString("en-us");
-  const time = new Date(props.article.date).toLocaleTimeString("en-us");
+const Article = ({ article }) => {
+  const date = new Date(article.publishedAt).toLocaleDateString("en-us");
+  const time = new Date(article.publishedAt).toLocaleTimeString("en-us");
+
   return (
     <article>
       <div className="wrapper">
-        {props.article.image ? (
+        {article.image ? (
           <figure>
-            <img src={props.article.image} alt={props.article.title} />
+            <img src={article.image} alt={article.title} />
           </figure>
         ) : (
           ""
         )}
         <h2>
-          <a href={props.article.link}>{props.article.title}</a>
+          <a href={article.link}>{article.title}</a>
         </h2>
-        <h4>{props.article.source}</h4>
+        <h4>{article.name}</h4>
         <h3>
           {date} - {time}
         </h3>
-        <p>{props.article.desc}</p>
+        <p>{article.description}</p>
       </div>
     </article>
   );
