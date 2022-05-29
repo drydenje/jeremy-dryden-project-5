@@ -16,12 +16,12 @@ export const Feed = () => {
   const articles = useSelector((state) => state.articles);
   // console.log(articles);
 
-  // const articles = this.props.articles.sort((a, b) => {
-  //   // Sort the array by date (most recent)
-  //   const d1 = new Date(a.date);
-  //   const d2 = new Date(b.date);
-  //   return d1 < d2;
-  // });
+  const articles2 = this.props.articles.sort((a, b) => {
+    // Sort the array by date (most recent)
+    const d1 = new Date(a.date);
+    const d2 = new Date(b.date);
+    return d1 < d2;
+  });
 
   // check if there is data to display
   const keywords = Object.keys(articles);
