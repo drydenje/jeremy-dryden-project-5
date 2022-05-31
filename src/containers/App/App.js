@@ -8,6 +8,7 @@ import {
 import Navigation from "../../components/Navigation/Navigation";
 import Feed from "../Feed/Feed";
 import Header from "../../components/Header/Header";
+import Instructions from "../../components/Instructions/Instructions";
 
 // import qs from "qs";
 
@@ -26,7 +27,8 @@ const App = () => {
         <Navigation />
         <Header />
         <Routes>
-          <Route path="/" element={<Feed />}>
+          <Route path="/" element={<Instructions />} />
+          <Route path="/?" element={<Feed />}>
             {/* <Navigate to="/" /> */}
           </Route>
         </Routes>
