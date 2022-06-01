@@ -9,7 +9,7 @@ export const Feed = () => {
 
   useEffect(() => {
     const currentParams = Object.fromEntries([...searchParams]);
-    console.log(currentParams);
+    // console.log(currentParams);
   }, [searchParams]);
 
   // Turn props into an array
