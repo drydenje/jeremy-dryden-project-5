@@ -20,12 +20,13 @@ header .wrapper {
   height: 70vh;
 }
 
-header h1 {
+header h1 a {
   margin-bottom: 2rem;
   font-size: 3rem;
   display: block;
   width: 100%;
   color: whitesmoke;
+  text-decoration: none;
 }
 
 header i {

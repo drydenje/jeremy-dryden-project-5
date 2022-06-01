@@ -4,8 +4,9 @@ import {
   Routes, // Switch or Routes?
   Route,
   // Navigate, // used to be Redirect
+  // useSearchParams,
 } from "react-router-dom";
-import Navigation from "../../components/Navigation/Navigation";
+// import Navigation from "../../components/Navigation/Navigation";
 import Feed from "../Feed/Feed";
 import Header from "../../components/Header/Header";
 import Instructions from "../../components/Instructions/Instructions";
@@ -17,6 +18,8 @@ import "./setup.css";
 
 const App = () => {
   // ✅ Main rendering logic goes here
+
+  // let [searchParams, setSearchParams] = useSearchParams();
   return (
     <Router>
       <div className="App">
@@ -24,11 +27,13 @@ const App = () => {
         {/* <a href="#maincontent" className="skip-link">
           Skip to main content.
         </a> */}
-        <Navigation />
+        {/* <Navigation /> */}
         <Header />
         <Routes>
-          <Route path="/" element={<Instructions />} />
-          <Route path="/?" element={<Feed />}>
+          <Route path="/" element={<Instructions />}>
+            {console.log("searchParams")}
+          </Route>
+          <Route path="/search" element={<Feed />}>
             {/* <Navigate to="/" /> */}
           </Route>
         </Routes>
