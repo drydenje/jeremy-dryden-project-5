@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSearchParams } from "react-router-dom";
+// import { useSearchParams } from "react-router-dom";
 import AddQueryForm from "../AddQueryForm/AddQueryForm";
 import "./Header.css";
 
 const Header = () => {
-  let [searchParams, setSearchParams] = useSearchParams();
+  // let [searchParams, setSearchParams] = useSearchParams();
   return (
     <header>
       <div className="wrapper">
