@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { nanoid } from "@reduxjs/toolkit";
 import { addKeyword } from "../Navigation/navigationSlice";
@@ -11,42 +11,47 @@ import "./AddQueryForm.css";
 const AddQueryForm = () => {
   const [keyword, setKeyword] = useState("");
   const onKeywordChanged = (e) => setKeyword(e.target.value);
-  // const dispatch = useDispatch();
-  // let [searchParams, setSearchParams] = useSearchParams();
-  const [searchParams] = useSearchParams();
+  const dispatch = useDispatch();
+  let [searchParams, setSearchParams] = useSearchParams();
+  // const [searchParams] = useSearchParams();
 
   useEffect(() => {
     const currentParams = Object.fromEntries([...searchParams]);
     console.log(currentParams["query"]);
-    // dispatchEvent(addKeyword({
-    //   id: nanoid(),
-    //   keyword:
-    // }))
+    dispatch(
+      addKeyword({
+        id: nanoid(),
+        keyword: currentParams["query"],
+      })
+    );
   }, [searchParams]);
 
   const handleSubmit = (event) => {
-    // console.log(event);
+    console.log(event.target);
     event.preventDefault();
-    if (keyword) {
-      dispatch(
-        addKeyword({
-          id: nanoid(),
-          keyword: currentParams["query"],
-        })
-      );
-      // setSearchParams(encodeURIComponent({ query }));
-      // console.log(event.target);
-      // let params = encodeURIComponent(keyword);
-      // setSearchParams(params);
-      // console.log("Search:", searchParams);
-      // setKeyword("");
-    }
+    // if (keyword) {
+    // dispatch(
+    //   addKeyword({
+    //     id: nanoid(),
+    //     keyword: currentParams["query"],
+    //   })
+    // );
+
+    // let params = encodeURIComponent(event.target);
+    // setSearchParams(params);
+
+    // console.log(event.target);
+    // let params = encodeURIComponent(keyword);
+    // setSearchParams(params);
+    // console.log("Search:", searchParams);
+    // setKeyword("");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <label htmlFor="addQuery">Add Keyword:</label>
       <input
+        onSubmit={handleSubmit}
         type="text"
         placeholder="Add a query to watch for"
         id="addQuery"
@@ -54,7 +59,7 @@ const AddQueryForm = () => {
         value={keyword}
         onChange={onKeywordChanged}
       />
-      <button type="button">Add Query</button>
+      <button type="submit">Add Query</button>
     </form>
   );
 };
