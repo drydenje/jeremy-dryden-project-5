@@ -32,6 +32,14 @@ const App = () => {
           <Route path="/search" element={<Feed />}>
             {/* <Navigate to="/" /> */}
           </Route>
+          <Route
+            path="*"
+            element={
+              <main>
+                <h2>Invalid Url</h2>
+              </main>
+            }
+          />
         </Routes>
       </div>
     </Router>
