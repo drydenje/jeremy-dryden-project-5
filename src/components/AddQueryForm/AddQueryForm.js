@@ -12,18 +12,23 @@ const AddQueryForm = () => {
   const [keyword, setKeyword] = useState("");
   const onKeywordChanged = (e) => setKeyword(e.target.value);
   const dispatch = useDispatch();
-  let [searchParams, setSearchParams] = useSearchParams();
-  // const [searchParams] = useSearchParams();
+  // let [searchParams, setSearchParams] = useSearchParams();
+  let [searchParams] = useSearchParams();
 
   useEffect(() => {
     const currentParams = Object.fromEntries([...searchParams]);
-    console.log(currentParams["query"]);
-    dispatch(
-      addKeyword({
-        id: nanoid(),
-        keyword: currentParams["query"],
-      })
-    );
+    // console.log(currentParams["query"]);
+
+    // check if a query has been provided
+    // might have this check moved to the reducer?
+    if (currentParams["query"]) {
+      dispatch(
+        addKeyword({
+          id: nanoid(),
+          keyword: currentParams["query"],
+        })
+      );
+    }
   }, [searchParams]);
 
   const handleSubmit = (event) => {
@@ -55,7 +60,7 @@ const AddQueryForm = () => {
         type="text"
         placeholder="Add a query to watch for"
         id="addQuery"
-        name="addQuery"
+        name="query"
         value={keyword}
         onChange={onKeywordChanged}
       />
