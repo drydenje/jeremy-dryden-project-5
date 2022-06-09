@@ -23,6 +23,9 @@ export const navigationSlice = createSlice({
     clearKeywords: (state, action) => {
       // clear all the keywords
     },
+    buildUrl: (state, action) => {
+      console.log(state);
+    },
   },
 });
 
