@@ -1,39 +1,41 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { nanoid } from "@reduxjs/toolkit";
-import { addKeyword } from "../Navigation/navigationSlice";
+// import { nanoid } from "@reduxjs/toolkit";
+// import { addKeyword } from "../Navigation/navigationSlice";
+import { useNavigate } from "react-router-dom";
 import "./AddQueryForm.css";
 
 // const query = ["Microsoft", "Apple", "IBM"];
 // const query = { keyword: "Microsoft" };
 
 const AddQueryForm = () => {
+  let navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
+  // const dispatch = useDispatch();
   const onKeywordChanged = (e) => setKeyword(e.target.value);
-  const dispatch = useDispatch();
   // let [searchParams, setSearchParams] = useSearchParams();
   let [searchParams] = useSearchParams();
 
   useEffect(() => {
     const currentParams = Object.fromEntries([...searchParams]);
-    // console.log(currentParams["query"]);
-
+    console.log("Query:", currentParams["query"]);
     // check if a query has been provided
     // might have this check moved to the reducer?
-    if (currentParams["query"]) {
-      dispatch(
-        addKeyword({
-          id: nanoid(),
-          keyword: currentParams["query"],
-        })
-      );
-    }
+    // if (currentParams["query"]) {
+    //   dispatch(
+    //     addKeyword({
+    //       id: nanoid(),
+    //       keyword: currentParams["query"],
+    //     })
+    //   );
+    // }
   }, [searchParams]);
 
-  const handleSubmit = (event) => {
-    console.log(event.target);
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    navigate(`./search/?query=${keyword}`);
+
     // if (keyword) {
     // dispatch(
     //   addKeyword({
@@ -53,10 +55,9 @@ const AddQueryForm = () => {
   };
 
   return (
-    <form>
-      <label htmlFor="addQuery">Add Keyword:</label>
+    <form onSubmit={handleSubmit}>
+      {/* <label htmlFor="addQuery">Add Keyword:</label> */}
       <input
-        onSubmit={handleSubmit}
         type="text"
         placeholder="Add a query to watch for"
         id="addQuery"
