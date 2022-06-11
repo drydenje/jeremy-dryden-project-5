@@ -27,10 +27,7 @@ export const Feed = () => {
   // check if there is data to display
   const keywords = Object.keys(articles);
   const renderedArticles = keywords.map((keyword) => {
-    // console.log("A:", articles[keyword][0].url);
-    // console.log("A:", articles[keyword]);
     return articles[keyword].map((article) => {
-      // console.log(article);
       return <Article article={article} key={article.url} />;
     });
   });
