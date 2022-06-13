@@ -88,7 +88,7 @@ export const feedSlice = createSlice({
   initialState,
   reducers: {
     addArticles: (state, action) => {
-      console.log("keyword:", action.payload.keyword);
+      // console.log("keyword:", action.payload.keyword);
       // state.push(action.payload);
       return {
         ...state,

@@ -3,27 +3,27 @@ import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { nanoid } from "@reduxjs/toolkit";
 import { addArticles } from "../../containers/Feed/feedSlice";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import "./AddQueryForm.css";
 
 const AddQueryForm = () => {
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
   const dispatch = useDispatch();
   const onKeywordChanged = (e) => setKeyword(e.target.value);
-  // let [searchParams, setSearchParams] = useSearchParams();
-  let [searchParams] = useSearchParams();
+  let [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
+    console.log(searchParams.getAll("q"));
     const currentParams = Object.fromEntries([...searchParams]);
-    console.log("Query:", currentParams["query"]);
+    // console.log("q:", currentParams["q"]);
     // check if a query has been provided
     // might have this check moved to the reducer?
-    if (currentParams["query"]) {
+    if (currentParams["q"]) {
       dispatch(
         addArticles({
           id: nanoid(),
-          keyword: currentParams["query"],
+          keyword: currentParams["q"],
         })
       );
     }
@@ -31,24 +31,15 @@ const AddQueryForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    navigate(`./search/?query=${keyword}`, { replace: true });
+    // let newParams = ["Sony", "Microsoft"];
+    let newParams = searchParams.getAll("q");
+    newParams.push(keyword);
 
-    // if (keyword) {
-    // dispatch(
-    //   addKeyword({
-    //     id: nanoid(),
-    //     keyword: currentParams["query"],
-    //   })
-    // );
+    // console.log("NP:", newParams);
+    setSearchParams({ q: newParams });
+    // navigate(`./search/?query=${keyword}`, { replace: true });
 
-    // let params = encodeURIComponent(event.target);
-    // setSearchParams(params);
-
-    // console.log(event.target);
-    // let params = encodeURIComponent(keyword);
-    // setSearchParams(params);
-    // console.log("Search:", searchParams);
-    // setKeyword("");
+    setKeyword("");
   };
 
   return (
