@@ -1,61 +1,35 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { nanoid } from "@reduxjs/toolkit";
-import { addKeyword } from "../Navigation/navigationSlice";
 import "./AddQueryForm.css";
-
-// const query = ["Microsoft", "Apple", "IBM"];
-// const query = { keyword: "Microsoft" };
 
 const AddQueryForm = () => {
   const [keyword, setKeyword] = useState("");
   const onKeywordChanged = (e) => setKeyword(e.target.value);
-  const dispatch = useDispatch();
   let [searchParams, setSearchParams] = useSearchParams();
-  // const [searchParams] = useSearchParams();
 
-  useEffect(() => {
-    const currentParams = Object.fromEntries([...searchParams]);
-    console.log(currentParams["query"]);
-    dispatch(
-      addKeyword({
-        id: nanoid(),
-        keyword: currentParams["query"],
-      })
-    );
-  }, [searchParams]);
-
-  const handleSubmit = (event) => {
-    console.log(event.target);
+  const handleSubmit = async (event) => {
+    // prevent the form from refreshing the page
     event.preventDefault();
-    // if (keyword) {
-    // dispatch(
-    //   addKeyword({
-    //     id: nanoid(),
-    //     keyword: currentParams["query"],
-    //   })
-    // );
 
-    // let params = encodeURIComponent(event.target);
-    // setSearchParams(params);
+    // create a new array from the parameters in the url
+    let newParams = searchParams.getAll("q");
+    // add the latest keyword
+    newParams.push(keyword);
+    // set the new url
+    setSearchParams({ q: newParams });
 
-    // console.log(event.target);
-    // let params = encodeURIComponent(keyword);
-    // setSearchParams(params);
-    // console.log("Search:", searchParams);
-    // setKeyword("");
+    // clear the state and text input
+    setKeyword("");
   };
 
   return (
-    <form>
-      <label htmlFor="addQuery">Add Keyword:</label>
+    <form onSubmit={handleSubmit}>
+      {/* <label htmlFor="addQuery">Add Keyword:</label> */}
       <input
-        onSubmit={handleSubmit}
         type="text"
         placeholder="Add a query to watch for"
         id="addQuery"
-        name="addQuery"
+        name="query"
         value={keyword}
         onChange={onKeywordChanged}
       />

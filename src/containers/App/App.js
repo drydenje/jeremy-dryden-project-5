@@ -48,6 +48,22 @@ const App = () => {
 
 export default App;
 
+// useEffect(() => {
+//   console.log(searchParams.getAll("q"));
+//   const currentParams = Object.fromEntries([...searchParams]);
+//   // console.log("q:", currentParams["q"]);
+//   // check if a query has been provided
+//   // might have this check moved to the reducer?
+//   if (currentParams["q"]) {
+//     dispatch(
+//       addArticles({
+//         id: nanoid(),
+//         keyword: currentParams["q"],
+//       })
+//     );
+//   }
+// }, [searchParams]);
+
 // // ✅ Used for pulling search queries the user supplied
 // pullKeywords = () => {
 //   // Request a list of keywords to be searched (from Firebase)

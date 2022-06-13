@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = [
-  {
-    key: "-LuzhCoSR-r6jUhrwTN9",
-    keyword: "airpods",
-  },
+  // {
+  //   key: "-LuzhCoSR-r6jUhrwTN9",
+  //   keyword: "airpods",
+  // },
 ];
 
 export const navigationSlice = createSlice({
@@ -22,6 +22,9 @@ export const navigationSlice = createSlice({
     },
     clearKeywords: (state, action) => {
       // clear all the keywords
+    },
+    buildUrl: (state, action) => {
+      console.log(state);
     },
   },
 });
