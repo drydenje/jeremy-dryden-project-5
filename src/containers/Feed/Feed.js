@@ -1,11 +1,13 @@
 // import React, { useEffect } from "react";
 import React from "react";
 import { useSelector } from "react-redux";
-// import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import Article from "../../components/Article/Article";
+import Instructions from "../../components/Instructions/Instructions";
 import "../Feed/Feed.css";
 
 export const Feed = () => {
+  let [searchParams] = useSearchParams();
   // const [searchParams] = useSearchParams();
 
   // useEffect(() => {
@@ -31,11 +33,20 @@ export const Feed = () => {
       return <Article article={article} key={article.url} />;
     });
   });
+  let newParams = searchParams.getAll("q");
 
   return (
-    // Loop through the array and pass each item to an Article object
-    // Uses the article url as the key
-    <main id="maincontent">{renderedArticles}</main>
+    <>
+      {/* 
+        // Loop through the array and pass each item to an Article object
+        // Uses the article url as the key 
+      */}
+      {newParams.length > 0 ? (
+        <main id="maincontent">{renderedArticles}</main>
+      ) : (
+        <Instructions />
+      )}
+    </>
   );
 
   /* {articles.map((article) => {

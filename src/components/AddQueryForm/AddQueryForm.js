@@ -1,15 +1,18 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import "./AddQueryForm.css";
 
 const AddQueryForm = () => {
   const [keyword, setKeyword] = useState("");
   const onKeywordChanged = (e) => setKeyword(e.target.value);
   let [searchParams, setSearchParams] = useSearchParams();
+  let navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     // prevent the form from refreshing the page
     event.preventDefault();
+    // await submitForm(event.target);
+    navigate("../search", { replace: true });
 
     // create a new array from the parameters in the url
     let newParams = searchParams.getAll("q");
