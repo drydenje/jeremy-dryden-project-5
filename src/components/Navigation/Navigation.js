@@ -1,22 +1,33 @@
-import React, { Fragment } from "react";
 import { useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 import "./Navigation.css";
 
 const Navigation = () => {
-  const keywords = useSelector((state) => state.keywords);
+  const keywords = useSelector((state) => Object.keys(state.articles));
+  let [searchParams, setSearchParams] = useSearchParams();
+
+  // remove the query keyword from the url param array
+  const removeKeyword = (keyword) => {
+    const words = searchParams.getAll("q").filter((word) => {
+      return word !== keyword;
+    });
+    setSearchParams({ q: words });
+  };
+
   const renderedKeywords = keywords.map((item) => {
     return (
-      <li key={item.key}>
-        {item.keyword}
+      <li key={item}>
+        {item}
         <span>
           <a
             href="#0"
             onClick={(e) => {
               e.preventDefault();
-              // props.removeQuery(item.key);
+              // console.log(item);
+              removeKeyword(item);
             }}
           >
-            <i className="far fa-times-circle" />
+            <i className="far fa-times-circle fa-sm" />
           </a>
         </span>
       </li>
@@ -24,19 +35,16 @@ const Navigation = () => {
   });
 
   return (
-    <Fragment>
-      <input type="checkbox" id="navMenu" />
+    <>
+      {/* <input type="checkbox" id="navMenu" /> */}
       <nav>
-        <label htmlFor="navMenu">
+        {/* <label htmlFor="navMenu">
           Close
           <i className="far fa-times-circle fa-1x" />
-        </label>
-        <ul>
-          <li key={"all"}>All</li>
-          {renderedKeywords}
-        </ul>
+        </label> */}
+        <ul>{renderedKeywords}</ul>
       </nav>
-    </Fragment>
+    </>
   );
 };
 

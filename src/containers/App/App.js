@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import {
   BrowserRouter as Router,
   Routes, // Switch or Routes?
@@ -6,9 +6,9 @@ import {
   // Navigate, // used to be Redirect
   // useParams,
 } from "react-router-dom";
-// import Navigation from "../../components/Navigation/Navigation";
-import Feed from "../Feed/Feed";
-import Header from "../../components/Header/Header";
+
+import Feed from "containers/Feed";
+import Header from "containers/Header";
 
 import "./App.css";
 import "./setup.css";
