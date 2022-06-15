@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import AddQueryForm from "../AddQueryForm/AddQueryForm";
+import Navigation from "../../components/Navigation/Navigation";
 import "./Header.css";
 
 const Header = () => {
@@ -15,6 +16,7 @@ const Header = () => {
           {/* <i className="fas fa-bars"></i> */}
           <div>Click HERE to edit your watch list</div>
         </label>
+        <Navigation />
       </div>
     </header>
   );

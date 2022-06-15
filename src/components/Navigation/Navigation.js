@@ -1,13 +1,15 @@
 import React, { Fragment } from "react";
 import { useSelector } from "react-redux";
-import "./Navigation.css";
+// import "./Navigation.css";
 
 const Navigation = () => {
-  const keywords = useSelector((state) => state.keywords);
+  const keywords = useSelector((state) => Object.keys(state.articles));
+  // console.log(keywords);
   const renderedKeywords = keywords.map((item) => {
+    console.log(item);
     return (
-      <li key={item.key}>
-        {item.keyword}
+      <li key={item}>
+        {item}
         <span>
           <a
             href="#0"
@@ -27,10 +29,10 @@ const Navigation = () => {
     <Fragment>
       <input type="checkbox" id="navMenu" />
       <nav>
-        <label htmlFor="navMenu">
+        {/* <label htmlFor="navMenu">
           Close
           <i className="far fa-times-circle fa-1x" />
-        </label>
+        </label> */}
         <ul>
           <li key={"all"}>All</li>
           {renderedKeywords}
