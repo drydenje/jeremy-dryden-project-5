@@ -4,14 +4,11 @@ import {
   Routes, // Switch or Routes?
   Route,
   // Navigate, // used to be Redirect
-  // useSearchParams,
+  // useParams,
 } from "react-router-dom";
 // import Navigation from "../../components/Navigation/Navigation";
 import Feed from "../Feed/Feed";
 import Header from "../../components/Header/Header";
-import Instructions from "../../components/Instructions/Instructions";
-
-// import qs from "qs";
 
 import "./App.css";
 import "./setup.css";
@@ -28,10 +25,10 @@ const App = () => {
         {/* <Navigation /> */}
         <Header />
         <Routes>
-          <Route path="/" element={<Instructions />}></Route>
-          <Route path="/search" element={<Feed />}>
-            {/* <Navigate to="/" /> */}
-          </Route>
+          <Route path="/" element={<Feed />} />
+          {/* <Route path="/" element={<Instructions />}>
+          <Route path=":q" element={<Feed />} />
+          </Route> */}
           <Route
             path="*"
             element={
