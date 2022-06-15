@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AddQueryForm from "../AddQueryForm/AddQueryForm";
-import Navigation from "../../components/Navigation/Navigation";
+import AddQueryForm from "components/AddQueryForm";
+import Navigation from "components/Navigation";
 import "./Header.css";
 
 const Header = () => {

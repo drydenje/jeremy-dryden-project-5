@@ -2,9 +2,9 @@
 // import React from "react";
 import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import Article from "components/Article/Article";
+import Article from "components/Article";
 import Instructions from "components/Instructions";
-import "../Feed/Feed.css";
+import "./Feed.css";
 
 export const Feed = () => {
   let [searchParams] = useSearchParams();
