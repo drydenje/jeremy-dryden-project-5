@@ -4,6 +4,8 @@ import articles from "fixtures/articles";
 const arrNew = articles;
 const initialState = {
   "Cody Bellinger": articles,
+  Microsoft: articles,
+  Apple: articles,
 };
 
 export const feedSlice = createSlice({
