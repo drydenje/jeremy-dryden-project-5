@@ -1,9 +1,9 @@
 // import React, { useEffect } from "react";
-import React from "react";
+// import React from "react";
 import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import Article from "../../components/Article/Article";
-import Instructions from "../../components/Instructions/Instructions";
+import Article from "components/Article/Article";
+import Instructions from "components/Instructions";
 import "../Feed/Feed.css";
 
 export const Feed = () => {

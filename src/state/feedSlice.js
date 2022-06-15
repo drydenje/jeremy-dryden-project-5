@@ -101,6 +101,7 @@ export const feedSlice = createSlice({
     },
     removeKeyword: (state, action) => {
       // remove a specific keyword and the articles related to it
+      console.log("remove keyword:", action.payload.keyword);
     },
   },
 });
