@@ -14,12 +14,19 @@ export const feedSlice = createSlice({
   reducers: {
     addArticles: (state, action) => {
       // state.push(action.payload);
-      console.log("KWA:", action.payload.keywordArray);
-      console.log("STATE:", state);
-      return {
-        ...state,
-        [action.payload.keywordArray]: arrNew,
-      };
+      // console.log("KWA:", action.payload.keywordArray);
+      // console.log("STATE:", state);
+      let result = {};
+      action.payload.keywordArray.forEach((word) => {
+        result[word] = arrNew;
+        // console.log("Word:", word);
+      });
+      // console.log("R:", result);
+      return result;
+      // return {
+      // ...state,
+      // [action.payload.keywordArray]: arrNew,
+      // };
     },
     clearArticles: (state, action) => {
       // clear all of the articles

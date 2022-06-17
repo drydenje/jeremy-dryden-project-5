@@ -6,6 +6,8 @@ import Instructions from "components/Instructions";
 import "./Feed.css";
 
 export const Feed = () => {
+  return null; // temp until checks are in place
+
   let [searchParams] = useSearchParams();
 
   // const [searchParams] = useSearchParams();

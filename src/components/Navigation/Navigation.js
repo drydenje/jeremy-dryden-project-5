@@ -15,7 +15,7 @@ const Navigation = () => {
   };
 
   const renderedKeywords = keywords.map((item) => {
-    console.log("Item:", item);
+    // console.log("Item:", item);
     return (
       <li key={item}>
         {item}
