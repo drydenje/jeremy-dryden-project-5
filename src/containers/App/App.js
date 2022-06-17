@@ -4,7 +4,6 @@ import {
   Routes, // Switch or Routes?
   Route,
   // Navigate, // used to be Redirect
-  // useParams,
 } from "react-router-dom";
 
 import Feed from "containers/Feed";
@@ -22,13 +21,9 @@ const App = () => {
         {/* <a href="#maincontent" className="skip-link">
           Skip to main content.
         </a> */}
-        {/* <Navigation /> */}
         <Header />
         <Routes>
           <Route path="/" element={<Feed />} />
-          {/* <Route path="/" element={<Instructions />}>
-          <Route path=":q" element={<Feed />} />
-          </Route> */}
           <Route
             path="*"
             element={

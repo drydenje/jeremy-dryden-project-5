@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-// import React from "react";
+// import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import Article from "components/Article";
@@ -8,13 +7,13 @@ import "./Feed.css";
 
 export const Feed = () => {
   let [searchParams] = useSearchParams();
+
   // const [searchParams] = useSearchParams();
 
-  useEffect(() => {
-    // const currentParams = Object.fromEntries([...searchParams]);
-    const currentParams = searchParams.getAll("q");
-    console.log(currentParams);
-  }, [searchParams]);
+  // useEffect(() => {
+  //   const currentParams = searchParams.getAll("q");
+  //   console.log("Current Params:", currentParams);
+  // }, [searchParams]);
 
   // Turn props into an array
   const articles = useSelector((state) => state.articles);

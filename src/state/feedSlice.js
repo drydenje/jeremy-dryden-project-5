@@ -3,9 +3,9 @@ import articles from "fixtures/articles";
 
 const arrNew = articles;
 const initialState = {
-  "Cody Bellinger": articles,
-  Microsoft: articles,
-  Apple: articles,
+  // "Cody Bellinger": articles,
+  // Microsoft: articles,
+  // Apple: articles,
 };
 
 export const feedSlice = createSlice({
@@ -13,11 +13,12 @@ export const feedSlice = createSlice({
   initialState,
   reducers: {
     addArticles: (state, action) => {
-      // console.log("keyword:", action.payload.keyword);
       // state.push(action.payload);
+      console.log("KWA:", action.payload.keywordArray);
+      console.log("STATE:", state);
       return {
         ...state,
-        [action.payload.keyword]: arrNew,
+        [action.payload.keywordArray]: arrNew,
       };
     },
     clearArticles: (state, action) => {
