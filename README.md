@@ -1,6 +1,8 @@
+# Feedwatch Explanation
+
 ## Live Site
 
-[https://project-05-3b237.firebaseapp.com/](https://project-05-3b237.firebaseapp.com/)
+[https://jd-project-5.netlify.app/](https://jd-project-5.netlify.app/)
 
 ## Available Scripts
 
@@ -8,5 +10,6 @@ In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.<br>
+Runs the app in the development mode.
+
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.

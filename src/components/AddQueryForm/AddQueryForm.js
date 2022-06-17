@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { nanoid } from "@reduxjs/toolkit";
+import { addArticles } from "state/feedSlice";
 import "./AddQueryForm.css";
 
 const AddQueryForm = () => {
   const [keyword, setKeyword] = useState("");
   const onKeywordChanged = (e) => setKeyword(e.target.value);
   let [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (event) => {
     // prevent the form from refreshing the page
@@ -21,6 +25,19 @@ const AddQueryForm = () => {
     // clear the state and text input
     setKeyword("");
   };
+
+  // need to dispatch every time the url is updated
+  useEffect(() => {
+    dispatch(
+      addArticles({
+        id: nanoid(),
+        // keyword: currentParams["q"],
+        keywordArray: searchParams.getAll("q"),
+      })
+    );
+
+    // console.log(searchParams.getAll("q"));
+  }, [searchParams]);
 
   return (
     <form onSubmit={handleSubmit}>
