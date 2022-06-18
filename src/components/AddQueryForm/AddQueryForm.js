@@ -35,9 +35,7 @@ const AddQueryForm = () => {
         keywordArray: searchParams.getAll("q"),
       })
     );
-
-    // console.log(searchParams.getAll("q"));
-  }, [searchParams]);
+  }, [searchParams, dispatch]);
 
   return (
     <form onSubmit={handleSubmit}>
