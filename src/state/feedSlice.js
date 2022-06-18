@@ -19,7 +19,7 @@ export const feedSlice = createSlice({
       let result = {};
       action.payload.keywordArray.forEach((word) => {
         result[word] = arrNew;
-        // console.log("Word:", word);
+        console.log("Word:", result[word]);
       });
       // console.log("R:", result);
       return result;
