@@ -6,6 +6,7 @@ import Instructions from "components/Instructions";
 import "./Feed.css";
 
 export const Feed = () => {
+  // eslint-disable-next-line
   return null; // temp until checks are in place
 
   let [searchParams] = useSearchParams();
