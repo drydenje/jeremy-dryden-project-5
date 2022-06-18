@@ -6,9 +6,9 @@ import Instructions from "components/Instructions";
 import "./Feed.css";
 
 export const Feed = () => {
-  // eslint-disable-next-line
   return null; // temp until checks are in place
 
+  // eslint-disable-next-line
   let [searchParams] = useSearchParams();
 
   // const [searchParams] = useSearchParams();
@@ -39,6 +39,7 @@ export const Feed = () => {
       return <Article article={article} key={article.url} />;
     });
   });
+  // eslint-disable-next-line
   let newParams = searchParams.getAll("q");
 
   return (
