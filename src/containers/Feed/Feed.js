@@ -1,18 +1,11 @@
 // import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
+// import { useSearchParams } from "react-router-dom";
 import Article from "components/Article";
 import Instructions from "components/Instructions";
 import "./Feed.css";
 
 export const Feed = () => {
-  return null; // temp until checks are in place
-
-  // eslint-disable-next-line
-  let [searchParams] = useSearchParams();
-
-  // const [searchParams] = useSearchParams();
-
   // useEffect(() => {
   //   const currentParams = searchParams.getAll("q");
   //   console.log("Current Params:", currentParams);
@@ -20,7 +13,6 @@ export const Feed = () => {
 
   // Turn props into an array
   const articles = useSelector((state) => state.articles);
-  // console.log(articles);
 
   // const articles2 = this.props.articles.sort((a, b) => {
   //   // Sort the array by date (most recent)
@@ -39,12 +31,10 @@ export const Feed = () => {
       return <Article article={article} key={article.url} />;
     });
   });
-  // eslint-disable-next-line
-  let newParams = searchParams.getAll("q");
 
   return (
     <>
-      {newParams.length > 0 ? (
+      {keywords.length > 0 ? (
         <main id="maincontent">{renderedArticles}</main>
       ) : (
         <main id="maincontent">
