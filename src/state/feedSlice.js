@@ -39,6 +39,16 @@ export const feedSlice = createSlice({
   },
 });
 
+const checkArticles = () => {
+  return (dispatch, getState) => {
+    const stateBefore = getState();
+    console.log("Before:", stateBefore);
+    dispatch(clearArticles);
+    const stateAfter = getState();
+    console.log("After:", stateAfter);
+  };
+};
+
 export const { addArticles, clearArticles, removeKeyword } = feedSlice.actions;
 
 export default feedSlice.reducer;
