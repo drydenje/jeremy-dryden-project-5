@@ -49,6 +49,10 @@ const checkArticles = () => {
   };
 };
 
+export const fetchArticles = createAsyncThunk("", async () => {
+  const response = await fetch("");
+});
+
 export const { addArticles, clearArticles, removeKeyword } = feedSlice.actions;
 
 export default feedSlice.reducer;
