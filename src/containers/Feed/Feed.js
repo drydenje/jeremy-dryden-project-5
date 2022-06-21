@@ -1,5 +1,6 @@
 // import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { selectAllArticles } from "state/feedSlice";
 // import { useSearchParams } from "react-router-dom";
 import Article from "components/Article";
 import Instructions from "components/Instructions";
@@ -12,7 +13,7 @@ export const Feed = () => {
   // }, [searchParams]);
 
   // Turn props into an array
-  const articles = useSelector((state) => state.articles);
+  const articles = useSelector(selectAllArticles);
 
   // const articles2 = this.props.articles.sort((a, b) => {
   //   // Sort the array by date (most recent)

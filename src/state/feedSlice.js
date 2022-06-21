@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import articles from "fixtures/articles";
 
 const arrNew = articles;
@@ -39,19 +39,21 @@ export const feedSlice = createSlice({
   },
 });
 
-const checkArticles = () => {
-  return (dispatch, getState) => {
-    const stateBefore = getState();
-    console.log("Before:", stateBefore);
-    dispatch(clearArticles);
-    const stateAfter = getState();
-    console.log("After:", stateAfter);
-  };
-};
+// const checkArticles = () => {
+//   return (dispatch, getState) => {
+//     const stateBefore = getState();
+//     console.log("Before:", stateBefore);
+//     dispatch(clearArticles);
+//     const stateAfter = getState();
+//     console.log("After:", stateAfter);
+//   };
+// };
 
-export const fetchArticles = createAsyncThunk("", async () => {
-  const response = await fetch("");
-});
+// export const fetchArticles = createAsyncThunk("", async () => {
+//   const response = await fetch("");
+// });
+
+export const selectAllArticles = (state) => state.articles;
 
 export const { addArticles, clearArticles, removeKeyword } = feedSlice.actions;
 
