@@ -19,7 +19,7 @@ export const feedSlice = createSlice({
       let result = {};
       action.payload.keywordArray.forEach((word) => {
         result[word] = arrNew;
-        console.log("Word:", result[word]);
+        // console.log("Word:", result[word]);
       });
       // console.log("R:", result);
       return result;
@@ -49,11 +49,20 @@ export const feedSlice = createSlice({
 //   };
 // };
 
-// export const fetchArticles = createAsyncThunk("", async () => {
-//   const response = await fetch("");
-// });
+// naming will be strange for testing
+export const fetchArticles = createAsyncThunk("posts/fetchPosts", async () => {
+  const response = await fetch(
+    "https://pokeapi.co/api/v2/ability/battle-armor"
+  ).then((response) => console.log(response.data));
+  return response.data;
+});
 
 export const selectAllArticles = (state) => state.articles;
+
+export const selectArticlesByKeyword = (state, keyword) =>
+  state.articles[keyword];
+
+export const selectAllKeywords = (state) => Object.keys(state.articles);
 
 export const { addArticles, clearArticles, removeKeyword } = feedSlice.actions;
 

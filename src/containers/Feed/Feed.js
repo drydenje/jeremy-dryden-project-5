@@ -15,6 +15,12 @@ export const Feed = () => {
   // Turn props into an array
   const articles = useSelector(selectAllArticles);
 
+  // for selecting only one keyword, but still keeping them in state
+  // const temp = useSelector((state) =>
+  //   selectArticlesByKeyword(state, "Microsoft")
+  // );
+  // console.log("temp:", temp);
+
   // const articles2 = this.props.articles.sort((a, b) => {
   //   // Sort the array by date (most recent)
   //   const d1 = new Date(a.date);

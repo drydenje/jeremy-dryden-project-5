@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
+import { selectAllKeywords } from "state/feedSlice";
 import "./Navigation.css";
 
 const Navigation = () => {
-  const keywords = useSelector((state) => Object.keys(state.articles));
+  const keywords = useSelector(selectAllKeywords);
   let [searchParams, setSearchParams] = useSearchParams();
 
   // remove the query keyword from the url param array
@@ -15,7 +16,6 @@ const Navigation = () => {
   };
 
   const renderedKeywords = keywords.map((item) => {
-    // console.log("Item:", item);
     return (
       <li key={item}>
         {item}
@@ -24,7 +24,6 @@ const Navigation = () => {
             href="#0"
             onClick={(e) => {
               e.preventDefault();
-              // console.log(item);
               removeKeyword(item);
             }}
           >
