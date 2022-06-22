@@ -15,7 +15,10 @@ export const feedSlice = createSlice({
   initialState,
   reducers: {
     addArticles: (state, action) => {
-      console.log(action);
+      const existingEntities = state.keywords;
+      console.log(existingEntities);
+      const testState = JSON.parse(JSON.stringify(existingEntities));
+      console.log("S:", testState);
       let newKeywords = {};
       let result = state;
       action.payload.keywordArray.forEach((word) => {
