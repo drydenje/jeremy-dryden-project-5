@@ -5,6 +5,7 @@ import "./Navigation.css";
 
 const Navigation = () => {
   const keywords = useSelector(selectAllKeywords);
+  // console.log("KW:", keywords);
   let [searchParams, setSearchParams] = useSearchParams();
 
   // remove the query keyword from the url param array

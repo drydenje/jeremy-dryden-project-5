@@ -12,7 +12,7 @@ const AddQueryForm = () => {
   const dispatch = useDispatch();
 
   const postStatus = useSelector((state) => state.articles.status);
-  console.log("PS:", postStatus);
+  // console.log("PS:", postStatus);
   // useEffect(() => {
   //   if (postStatus === "idle") {
   //     dispatch(fetchArticles());
