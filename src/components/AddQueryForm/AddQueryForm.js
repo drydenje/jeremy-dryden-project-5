@@ -11,13 +11,13 @@ const AddQueryForm = () => {
   let [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
 
-  const postStatus = useSelector((state) => state.articles.status);
-  // console.log("PS:", postStatus);
-  useEffect(() => {
-    if (postStatus === "idle") {
-      dispatch(fetchArticles());
-    }
-  }, [postStatus, dispatch]);
+  // const postStatus = useSelector((state) => state.articles.status);
+  // // console.log("PS:", postStatus);
+  // useEffect(() => {
+  //   if (postStatus === "idle") {
+  //     dispatch(fetchArticles());
+  //   }
+  // }, [postStatus, dispatch]);
 
   const handleSubmit = async (event) => {
     // prevent the form from refreshing the page

@@ -15,6 +15,7 @@ export const feedSlice = createSlice({
   initialState,
   reducers: {
     addArticles: (state, action) => {
+      console.log(action);
       let newKeywords = {};
       let result = state;
       action.payload.keywordArray.forEach((word) => {
@@ -25,14 +26,6 @@ export const feedSlice = createSlice({
         keywords: newKeywords,
       };
       return result;
-    },
-    clearArticles: (state, action) => {
-      // clear all of the articles
-      state.articles = {};
-    },
-    removeKeyword: (state, action) => {
-      // remove a specific keyword and the articles related to it
-      console.log("remove keyword:", action.payload.keyword);
     },
   },
   extraReducers(builder) {
@@ -87,6 +80,6 @@ export const selectArticlesByKeyword = (state, keyword) =>
 export const selectAllKeywords = (state) =>
   Object.keys(state.articles.keywords);
 
-export const { addArticles, clearArticles, removeKeyword } = feedSlice.actions;
+export const { addArticles } = feedSlice.actions;
 
 export default feedSlice.reducer;
