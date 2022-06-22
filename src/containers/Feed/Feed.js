@@ -1,6 +1,6 @@
 // import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { selectAllArticles } from "state/feedSlice";
+import { selectAllArticles, selectAllKeywords } from "state/feedSlice";
 // import { useSearchParams } from "react-router-dom";
 import Article from "components/Article";
 import Instructions from "components/Instructions";
@@ -29,7 +29,9 @@ export const Feed = () => {
   // });
 
   // check if there is data to display
-  const keywords = Object.keys(articles);
+  // const keywords = Object.keys(articles);
+  const keywords = useSelector(selectAllKeywords);
+  // console.log("KW:", keywords);
 
   // Loop through the array and pass each item to an Article object
   // Uses the article url as the key

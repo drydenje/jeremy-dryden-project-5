@@ -3,9 +3,11 @@ import articles from "fixtures/articles";
 
 const arrNew = articles;
 const initialState = {
-  // "Cody Bellinger": articles,
-  // Microsoft: articles,
-  // Apple: articles,
+  keywords: {
+    "Cody Bellinger": arrNew,
+  },
+  status: "idle", // idle, loading, succeeded, failed
+  error: null,
 };
 
 export const feedSlice = createSlice({
@@ -13,20 +15,23 @@ export const feedSlice = createSlice({
   initialState,
   reducers: {
     addArticles: (state, action) => {
-      // state.push(action.payload);
-      // console.log("KWA:", action.payload.keywordArray);
-      // console.log("STATE:", state);
-      let result = {};
-      action.payload.keywordArray.forEach((word) => {
-        result[word] = arrNew;
-        // console.log("Word:", result[word]);
-      });
-      // console.log("R:", result);
-      return result;
-      // return {
-      // ...state,
-      // [action.payload.keywordArray]: arrNew,
-      // };
+      // let result = {};
+      // action.payload.keywordArray.forEach((word) => {
+      //   result[word] = {
+      //     articles: arrNew,
+      //     status: "idle",
+      //     error: null,
+      //   };
+      // });
+      // let result = {};
+      // action.payload.keywordArray.forEach((word) => {
+      //   result[word] = {
+      //     articles: arrNew,
+      //     status: "idle",
+      //     error: null,
+      //   };
+      // });
+      // return result;
     },
     clearArticles: (state, action) => {
       // clear all of the articles
@@ -50,19 +55,24 @@ export const feedSlice = createSlice({
 // };
 
 // naming will be strange for testing
-export const fetchArticles = createAsyncThunk("posts/fetchPosts", async () => {
-  const response = await fetch(
-    "https://pokeapi.co/api/v2/ability/battle-armor"
-  ).then((response) => console.log(response.data));
-  return response.data;
-});
+export const fetchArticles = createAsyncThunk(
+  "articles/fetchPosts",
+  async () => {
+    const response = await fetch(
+      "https://pokeapi.co/api/v2/ability/battle-armor"
+    ).then((response) => response.json());
+    console.log(response.pokemon);
+    return response;
+  }
+);
 
-export const selectAllArticles = (state) => state.articles;
+export const selectAllArticles = (state) => state.articles.keywords;
 
 export const selectArticlesByKeyword = (state, keyword) =>
-  state.articles[keyword];
+  state.keywords[keyword];
 
-export const selectAllKeywords = (state) => Object.keys(state.articles);
+export const selectAllKeywords = (state) =>
+  Object.keys(state.articles.keywords);
 
 export const { addArticles, clearArticles, removeKeyword } = feedSlice.actions;
 
