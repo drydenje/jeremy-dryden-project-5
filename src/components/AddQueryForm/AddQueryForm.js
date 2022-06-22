@@ -13,11 +13,11 @@ const AddQueryForm = () => {
 
   const postStatus = useSelector((state) => state.articles.status);
   // console.log("PS:", postStatus);
-  // useEffect(() => {
-  //   if (postStatus === "idle") {
-  //     dispatch(fetchArticles());
-  //   }
-  // }, [postStatus, dispatch]);
+  useEffect(() => {
+    if (postStatus === "idle") {
+      dispatch(fetchArticles());
+    }
+  }, [postStatus, dispatch]);
 
   const handleSubmit = async (event) => {
     // prevent the form from refreshing the page

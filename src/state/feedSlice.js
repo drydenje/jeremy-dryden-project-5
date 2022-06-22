@@ -24,20 +24,6 @@ export const feedSlice = createSlice({
         ...state,
         keywords: newKeywords,
       };
-
-      // result[word] = {
-      //   articles: arrNew,
-      //   status: "idle",
-      //   error: null,
-      // };
-      // let result = {};
-      // action.payload.keywordArray.forEach((word) => {
-      //   result[word] = {
-      //     articles: arrNew,
-      //     status: "idle",
-      //     error: null,
-      //   };
-      // });
       return result;
     },
     clearArticles: (state, action) => {
@@ -48,6 +34,23 @@ export const feedSlice = createSlice({
       // remove a specific keyword and the articles related to it
       console.log("remove keyword:", action.payload.keyword);
     },
+  },
+  extraReducers(builder) {
+    builder
+      .addCase(fetchArticles.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(fetchArticles.fulfilled, (state, action) => {
+        const { query, data } = action.payload;
+        state.status = "succeeded";
+        // add fetched articles to the object's array
+        console.log("ACTION:", action);
+        state.keywords[query] = data;
+      })
+      .addCase(fetchArticles.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      });
   },
 });
 
@@ -61,15 +64,18 @@ export const feedSlice = createSlice({
 //   };
 // };
 
-// naming will be strange for testing
 export const fetchArticles = createAsyncThunk(
-  "articles/fetchPosts",
+  "articles/fetchArticles",
   async () => {
+    const query = "Microsoft";
     const response = await fetch(
-      "https://pokeapi.co/api/v2/ability/battle-armor"
+      `${process.env.REACT_APP_FETCH_URL}search?q=${query}&max=${process.env.REACT_APP_MAX_ARTICLES}&token=${process.env.REACT_APP_GKEY}`
     ).then((response) => response.json());
-    console.log(response.pokemon);
-    return response;
+    console.log(response.articles);
+    return {
+      query: query,
+      data: response.articles,
+    };
   }
 );
 
