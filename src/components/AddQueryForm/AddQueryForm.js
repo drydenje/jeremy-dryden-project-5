@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
-import { addArticles } from "state/feedSlice";
+import { addArticles, fetchArticles } from "state/feedSlice";
 import "./AddQueryForm.css";
 
 const AddQueryForm = () => {
@@ -10,6 +10,14 @@ const AddQueryForm = () => {
   const onKeywordChanged = (e) => setKeyword(e.target.value);
   let [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
+
+  const postStatus = useSelector((state) => state.articles.status);
+  // console.log("PS:", postStatus);
+  useEffect(() => {
+    if (postStatus === "idle") {
+      dispatch(fetchArticles());
+    }
+  }, [postStatus, dispatch]);
 
   const handleSubmit = async (event) => {
     // prevent the form from refreshing the page

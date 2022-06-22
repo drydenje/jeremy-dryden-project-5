@@ -1,5 +1,6 @@
 // import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { selectAllArticles, selectAllKeywords } from "state/feedSlice";
 // import { useSearchParams } from "react-router-dom";
 import Article from "components/Article";
 import Instructions from "components/Instructions";
@@ -12,7 +13,13 @@ export const Feed = () => {
   // }, [searchParams]);
 
   // Turn props into an array
-  const articles = useSelector((state) => state.articles);
+  const articles = useSelector(selectAllArticles);
+
+  // for selecting only one keyword, but still keeping them in state
+  // const temp = useSelector((state) =>
+  //   selectArticlesByKeyword(state, "Microsoft")
+  // );
+  // console.log("temp:", temp);
 
   // const articles2 = this.props.articles.sort((a, b) => {
   //   // Sort the array by date (most recent)
@@ -22,7 +29,9 @@ export const Feed = () => {
   // });
 
   // check if there is data to display
-  const keywords = Object.keys(articles);
+  // const keywords = Object.keys(articles);
+  const keywords = useSelector(selectAllKeywords);
+  // console.log("KW:", keywords);
 
   // Loop through the array and pass each item to an Article object
   // Uses the article url as the key
