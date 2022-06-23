@@ -1,4 +1,5 @@
-import { addArticles, clearArticles } from "./articles";
+import { clearArticles } from "./articles";
+// import { addArticles, clearArticles } from "./articles";
 
 // test("should setup ADD_ARTICLES action object with a passed string", () => {
 //   const searchTerm = "example";
@@ -12,6 +13,6 @@ import { addArticles, clearArticles } from "./articles";
 test("should setup CLEAR_ARTICLES action object", () => {
   const action = clearArticles();
   expect(action).toEqual({
-    type: "CLEAR_ARTICLES"
+    type: "CLEAR_ARTICLES",
   });
 });

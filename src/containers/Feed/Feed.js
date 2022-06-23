@@ -52,19 +52,6 @@ export const Feed = () => {
       )}
     </>
   );
-
-  /* {articles.map((article) => {
-        console.log("A:", article);
-        return <Article article={article} key={article.link} />;
-      })} */
-
-  //   } else {
-  //     return (
-  //       <div className="wrapper">
-  //         <h1>Open the menu and add a search term</h1>
-  //       </div>
-  //     );
-  //   }
 };
 
 export default Feed;
