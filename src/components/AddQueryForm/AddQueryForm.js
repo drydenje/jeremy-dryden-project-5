@@ -11,27 +11,29 @@ const AddQueryForm = () => {
   let [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
 
-  const postStatus = useSelector((state) => state.articles.status);
-  // console.log("PS:", postStatus);
-  useEffect(() => {
-    if (postStatus === "idle") {
-      dispatch(fetchArticles());
-    }
-  }, [postStatus, dispatch]);
+  // const postStatus = useSelector((state) => state.articles.status);
+  // // console.log("PS:", postStatus);
+  // useEffect(() => {
+  //   if (postStatus === "idle") {
+  //     dispatch(fetchArticles());
+  //   }
+  // }, [postStatus, dispatch]);
 
   const handleSubmit = async (event) => {
     // prevent the form from refreshing the page
     event.preventDefault();
 
-    // create a new array from the parameters in the url
-    let newParams = searchParams.getAll("q");
-    // add the latest keyword
-    newParams.push(keyword);
-    // set the new url
-    setSearchParams({ q: newParams });
+    if (keyword.trim() !== "") {
+      // create a new array from the parameters in the url
+      let newParams = searchParams.getAll("q");
+      // add the latest keyword
+      newParams.push(keyword);
+      // set the new url
+      setSearchParams({ q: newParams });
 
-    // clear the state and text input
-    setKeyword("");
+      // clear the state and text input
+      setKeyword("");
+    }
   };
 
   // need to dispatch every time the url is updated

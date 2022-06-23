@@ -15,6 +15,10 @@ export const feedSlice = createSlice({
   initialState,
   reducers: {
     addArticles: (state, action) => {
+      const existingEntities = state.keywords;
+      console.log(existingEntities);
+      const testState = JSON.parse(JSON.stringify(existingEntities));
+      console.log("S:", testState);
       let newKeywords = {};
       let result = state;
       action.payload.keywordArray.forEach((word) => {
@@ -25,14 +29,6 @@ export const feedSlice = createSlice({
         keywords: newKeywords,
       };
       return result;
-    },
-    clearArticles: (state, action) => {
-      // clear all of the articles
-      state.articles = {};
-    },
-    removeKeyword: (state, action) => {
-      // remove a specific keyword and the articles related to it
-      console.log("remove keyword:", action.payload.keyword);
     },
   },
   extraReducers(builder) {
@@ -66,8 +62,8 @@ export const feedSlice = createSlice({
 
 export const fetchArticles = createAsyncThunk(
   "articles/fetchArticles",
-  async () => {
-    const query = "Microsoft";
+  async (query) => {
+    // const query = "Microsoft";
     const response = await fetch(
       `${process.env.REACT_APP_FETCH_URL}search?q=${query}&max=${process.env.REACT_APP_MAX_ARTICLES}&token=${process.env.REACT_APP_GKEY}`
     ).then((response) => response.json());
@@ -87,6 +83,6 @@ export const selectArticlesByKeyword = (state, keyword) =>
 export const selectAllKeywords = (state) =>
   Object.keys(state.articles.keywords);
 
-export const { addArticles, clearArticles, removeKeyword } = feedSlice.actions;
+export const { addArticles } = feedSlice.actions;
 
 export default feedSlice.reducer;
