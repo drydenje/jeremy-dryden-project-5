@@ -62,8 +62,8 @@ export const feedSlice = createSlice({
 
 export const fetchArticles = createAsyncThunk(
   "articles/fetchArticles",
-  async () => {
-    const query = "Microsoft";
+  async (query) => {
+    // const query = "Microsoft";
     const response = await fetch(
       `${process.env.REACT_APP_FETCH_URL}search?q=${query}&max=${process.env.REACT_APP_MAX_ARTICLES}&token=${process.env.REACT_APP_GKEY}`
     ).then((response) => response.json());
