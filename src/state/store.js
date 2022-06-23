@@ -1,5 +1,6 @@
 import { configureStore, createListenerMiddleware } from "@reduxjs/toolkit";
-import feedReducer, { addArticles, selectAllKeywords } from "state/feedSlice";
+import feedReducer, { addArticles } from "state/feedSlice";
+// import feedReducer, { addArticles, selectAllKeywords } from "state/feedSlice";
 
 const listenerMiddleware = createListenerMiddleware();
 

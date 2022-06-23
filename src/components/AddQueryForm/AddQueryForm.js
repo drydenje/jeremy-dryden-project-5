@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
-import { addArticles, fetchArticles } from "state/feedSlice";
+import { addArticles } from "state/feedSlice";
+// import { addArticles, fetchArticles } from "state/feedSlice";
 import "./AddQueryForm.css";
 
 const AddQueryForm = () => {
