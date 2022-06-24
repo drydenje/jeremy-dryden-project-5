@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-// import articles from "fixtures/articles";
-// const arrNew = articles;
+import articles from "fixtures/articles";
+const arrNew = articles;
 
 const initialState = {
   keywords: {
-    // "Cody Bellinger": arrNew,
+    Microsoft: arrNew,
   },
   status: "idle", // idle, loading, succeeded, failed
   error: null,
@@ -16,17 +16,17 @@ export const feedSlice = createSlice({
   reducers: {
     addArticles: (state, action) => {
       const existingEntities = state.keywords;
-      console.log(existingEntities);
+      // console.log(existingEntities);
       const testState = JSON.parse(JSON.stringify(existingEntities));
-      console.log("S:", testState);
+      // console.log("S:", testState);
       let newKeywords = {};
       let result = state;
       action.payload.keywordArray.forEach((word) => {
-        newKeywords[word] = [];
+        newKeywords[word] = testState[word] || [];
       });
       result = {
         ...state,
-        keywords: newKeywords,
+        keywords: { ...newKeywords },
       };
       return result;
     },
@@ -74,6 +74,13 @@ export const fetchArticles = createAsyncThunk(
     };
   }
 );
+
+export const checkArticles = () => {
+  // foreach keyword
+  // if undefined/null?
+  // log keyword
+  // fetch articles in paralel
+};
 
 export const selectAllArticles = (state) => state.articles.keywords;
 
