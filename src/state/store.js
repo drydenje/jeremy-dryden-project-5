@@ -1,5 +1,6 @@
 import { configureStore, createListenerMiddleware } from "@reduxjs/toolkit";
 import feedReducer, { addArticles, checkArticles } from "state/feedSlice";
+// import feedReducer, { addArticles } from "state/feedSlice";
 
 const listenerMiddleware = createListenerMiddleware();
 
