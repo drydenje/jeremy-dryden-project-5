@@ -128,14 +128,28 @@ export const checkArticles = () => {
 
   // Handling errors with multiple HTTP requests
   // https://stackoverflow.com/a/67146861
-  // Promise.all(requests)
-  // .then
+  Promise.all(requests)
+    .then((responses) => {
+      const errors = responses.filter((response) => !response.ok);
+      if (errors.length > 0) {
+        throw errors.map((response) => Error(response.statusText));
+      }
+
+      const json = responses.map((response) => response.json());
+      return Promise.all(json);
+    })
+    .then((data) => {
+      data.forEach((datum) => console.log(datum));
+    })
+    .catch((errors) => {
+      errors.forEach((error) => console.error(error));
+    });
 
   // console.log(requests);
 
   // fetchme(word);
 
-  return {};
+  // return {};
   // foreach keyword
   // if undefined/null?
   // log keyword
@@ -144,6 +158,7 @@ export const checkArticles = () => {
 
 const fetchme = (word) => {
   console.log(`fetching:${word}`);
+  return word;
 };
 export const selectAllArticles = (state) => state.articles.keywords;
 
