@@ -77,7 +77,7 @@ export const fetchArticles = createAsyncThunk(
 
 export const checkArticles = () => {
   const keywords = {
-    one: [],
+    Timex: [],
     two: [
       {
         title:
@@ -118,17 +118,18 @@ export const checkArticles = () => {
         },
       },
     ],
-    three: [],
+    Baseball: [],
   };
+  let result = {};
 
-  const keys = Object.keys(keywords);
-  const requests = keys
-    .filter((word) => keywords[word].length === 0)
-    .map((word) => {
-      return fetch(
-        `${process.env.REACT_APP_FETCH_URL}search?q=${word}&max=${process.env.REACT_APP_MAX_ARTICLES}&token=${process.env.REACT_APP_GKEY}`
-      );
-    });
+  const keys = Object.keys(keywords).filter(
+    (word) => keywords[word].length === 0
+  );
+  const requests = keys.map((word) => {
+    return fetch(
+      `${process.env.REACT_APP_FETCH_URL}search?q=${word}&max=${process.env.REACT_APP_MAX_ARTICLES}&token=${process.env.REACT_APP_GKEY}`
+    );
+  });
 
   // Handling errors with multiple HTTP requests
   // https://stackoverflow.com/a/67146861
@@ -143,15 +144,18 @@ export const checkArticles = () => {
       return Promise.all(json);
     })
     .then((data) => {
-      data.forEach((datum) => console.log(datum));
+      console.log(keys);
+      data.forEach((datum, index) => {
+        const word = keys[index];
+        result[word] = datum.articles;
+      });
+      console.log(result);
     })
     .catch((errors) => {
       errors.forEach((error) => console.error(error));
     });
 
   // console.log(requests);
-
-  // fetchme(word);
 
   // return {};
   // foreach keyword
@@ -160,10 +164,6 @@ export const checkArticles = () => {
   // fetch articles in paralel
 };
 
-const fetchme = (word) => {
-  console.log(`fetching:${word}`);
-  return word;
-};
 export const selectAllArticles = (state) => state.articles.keywords;
 
 export const selectArticlesByKeyword = (state, keyword) =>
