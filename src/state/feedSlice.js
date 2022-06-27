@@ -144,7 +144,6 @@ export const checkArticles = () => {
       return Promise.all(json);
     })
     .then((data) => {
-      console.log(keys);
       data.forEach((datum, index) => {
         const word = keys[index];
         result[word] = datum.articles;
