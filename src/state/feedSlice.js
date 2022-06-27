@@ -124,7 +124,11 @@ export const checkArticles = () => {
   const keys = Object.keys(keywords);
   const requests = keys
     .filter((word) => keywords[word].length === 0)
-    .map((word) => fetchme(word));
+    .map((word) => {
+      return fetch(
+        `${process.env.REACT_APP_FETCH_URL}search?q=${word}&max=${process.env.REACT_APP_MAX_ARTICLES}&token=${process.env.REACT_APP_GKEY}`
+      );
+    });
 
   // Handling errors with multiple HTTP requests
   // https://stackoverflow.com/a/67146861
