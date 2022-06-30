@@ -18,7 +18,7 @@ export const feedSlice = createSlice({
 
       // the starting state
       const startingState = JSON.parse(JSON.stringify(existingEntities));
-      console.log("S:", startingState);
+      // console.log("S:", startingState);
       // the new keywords object, to be combined with the current state and returned
       let newKeywords = {};
 
@@ -77,7 +77,8 @@ export const fetchArticles = createAsyncThunk(
     //   `${process.env.REACT_APP_FETCH_URL}search?q=${query}&max=${process.env.REACT_APP_MAX_ARTICLES}&token=${process.env.REACT_APP_GKEY}`
     // ).then((response) => response.json());
 
-    return articles;
+    console.log("JSON:", JSON.stringify(articles));
+    return { articles };
     // return {
     // query: query,
     // data: response.articles,

@@ -1,6 +1,7 @@
 import { configureStore, createListenerMiddleware } from "@reduxjs/toolkit";
 // import feedReducer, { addArticles, checkArticles } from "state/feedSlice";
-import feedReducer, { addArticles } from "state/feedSlice";
+import feedReducer, { addArticles, selectAllArticles } from "state/feedSlice";
+// import feedReducer, { addArticles } from "state/feedSlice";
 
 const listenerMiddleware = createListenerMiddleware();
 
@@ -8,7 +9,12 @@ listenerMiddleware.startListening({
   actionCreator: addArticles,
   effect: async (action, listenerApi) => {
     // const keywords = selectAllKeywords(listenerApi.getState());
-    // console.log("KW:", keywords);
+    const articles = selectAllArticles(listenerApi.getState());
+    console.log("KW:", articles);
+
+    // selectMissingArticles() <- make this in feedslice
+    // dispatch addSearchResults <- adds the state to the keyword in feedslice
+
     // const s = listenerApi.getState();
     // console.log("state:", s.articles);
     // console.log("A:", action);
