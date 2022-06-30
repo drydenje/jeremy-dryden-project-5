@@ -1,10 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import articles from "fixtures/articles";
-const arrNew = articles;
 
 const initialState = {
   keywords: {
-    Microsoft: arrNew,
+    // Microsoft: articles,
   },
   status: "idle", // idle, loading, succeeded, failed
   error: null,
@@ -16,13 +15,20 @@ export const feedSlice = createSlice({
   reducers: {
     addArticles: (state, action) => {
       const existingEntities = state.keywords;
-      // console.log(existingEntities);
-      const testState = JSON.parse(JSON.stringify(existingEntities));
-      // console.log("S:", testState);
+
+      // the starting state
+      const startingState = JSON.parse(JSON.stringify(existingEntities));
+      console.log("S:", startingState);
+      // the new keywords object, to be combined with the current state and returned
       let newKeywords = {};
+
+      // all current keywords and articles
       let result = state;
+
+      // for each url param passed with the payload
       action.payload.keywordArray.forEach((word) => {
-        newKeywords[word] = testState[word] || [];
+        // newKeywords[word] = startingState[word] || fetchArticles(word);
+        newKeywords[word] = startingState[word] || [];
       });
       result = {
         ...state,
@@ -41,6 +47,8 @@ export const feedSlice = createSlice({
         state.status = "succeeded";
         // add fetched articles to the object's array
         console.log("ACTION:", action);
+        console.log("STATE:", state);
+        console.log("Q+D:", query, data);
         state.keywords[query] = data;
       })
       .addCase(fetchArticles.rejected, (state, action) => {
@@ -62,16 +70,18 @@ export const feedSlice = createSlice({
 
 export const fetchArticles = createAsyncThunk(
   "articles/fetchArticles",
-  async () => {
-    console.log("State:");
-    const query = "Microsoft";
-    const response = await fetch(
-      `${process.env.REACT_APP_FETCH_URL}search?q=${query}&max=${process.env.REACT_APP_MAX_ARTICLES}&token=${process.env.REACT_APP_GKEY}`
-    ).then((response) => response.json());
-    return {
-      query: query,
-      data: response.articles,
-    };
+  async (query) => {
+    // console.log("State:");
+    // const query = "Microsoft";
+    // const response = await fetch(
+    //   `${process.env.REACT_APP_FETCH_URL}search?q=${query}&max=${process.env.REACT_APP_MAX_ARTICLES}&token=${process.env.REACT_APP_GKEY}`
+    // ).then((response) => response.json());
+
+    return articles;
+    // return {
+    // query: query,
+    // data: response.articles,
+    // }
   }
 );
 
