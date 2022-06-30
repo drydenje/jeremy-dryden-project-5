@@ -15,9 +15,12 @@ listenerMiddleware.startListening({
     // selectMissingArticles() <- make this in feedslice
     // dispatch addSearchResults <- adds the state to the keyword in feedslice
 
-    // const s = listenerApi.getState();
-    // console.log("state:", s.articles);
-    // console.log("A:", action);
+    // OR!!!
+    // use code below to inspect payload and fetch as the action is sent
+    // this might be better i think
+    const s = listenerApi.getState();
+    console.log("state:", s.articles);
+    console.log("A:", action);
     // checkArticles();
     // listenerApi.cancelActiveListeners();
   },
