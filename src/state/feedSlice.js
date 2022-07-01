@@ -18,7 +18,7 @@ export const feedSlice = createSlice({
 
       // the starting state
       const startingState = JSON.parse(JSON.stringify(existingEntities));
-      // console.log("S:", startingState);
+
       // the new keywords object, to be combined with the current state and returned
       let newKeywords = {};
 
@@ -35,6 +35,12 @@ export const feedSlice = createSlice({
         keywords: { ...newKeywords },
       };
       return result;
+    },
+    addSearchResults: (state, action) => {
+      console.log("SearchResults:", action.payload);
+      return {
+        ...state,
+      };
     },
   },
   extraReducers(builder) {
@@ -70,14 +76,15 @@ export const feedSlice = createSlice({
 
 export const fetchArticles = createAsyncThunk(
   "articles/fetchArticles",
-  async (query) => {
-    // console.log("State:");
-    // const query = "Microsoft";
-    // const response = await fetch(
-    //   `${process.env.REACT_APP_FETCH_URL}search?q=${query}&max=${process.env.REACT_APP_MAX_ARTICLES}&token=${process.env.REACT_APP_GKEY}`
-    // ).then((response) => response.json());
+  async () => {
+    // console.log(query);
+    console.log("State:");
+    const query = "Apple";
+    const response = await fetch(
+      `${process.env.REACT_APP_FETCH_URL}search?q=${query}&max=${process.env.REACT_APP_MAX_ARTICLES}&token=${process.env.REACT_APP_GKEY}`
+    ).then((response) => response.json());
 
-    console.log("JSON:", JSON.stringify(articles));
+    // console.log("JSON:", JSON.stringify(articles));
     return { articles };
     // return {
     // query: query,
@@ -164,14 +171,6 @@ export const checkArticles = () => {
     .catch((errors) => {
       errors.forEach((error) => console.error(error));
     });
-
-  // console.log(requests);
-
-  // return {};
-  // foreach keyword
-  // if undefined/null?
-  // log keyword
-  // fetch articles in paralel
 };
 
 export const selectAllArticles = (state) => state.articles.keywords;
@@ -188,6 +187,6 @@ export const selectArticlesByKeyword = (state, keyword) =>
 export const selectAllKeywords = (state) =>
   Object.keys(state.articles.keywords);
 
-export const { addArticles } = feedSlice.actions;
+export const { addArticles, addSearchResults } = feedSlice.actions;
 
 export default feedSlice.reducer;
