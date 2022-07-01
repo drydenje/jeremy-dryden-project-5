@@ -3,7 +3,7 @@ import articles from "fixtures/articles";
 
 const initialState = {
   keywords: {
-    // Microsoft: articles,
+    Microsoft: articles,
   },
   status: "idle", // idle, loading, succeeded, failed
   error: null,
@@ -175,6 +175,12 @@ export const checkArticles = () => {
 };
 
 export const selectAllArticles = (state) => state.articles.keywords;
+
+export const selectMissingArticles = (state) => {
+  const { keywords } = state.articles;
+  const keys = Object.keys(state.articles.keywords);
+  return keys.filter((word) => keywords[word].length === 0);
+};
 
 export const selectArticlesByKeyword = (state, keyword) =>
   state.keywords[keyword];
