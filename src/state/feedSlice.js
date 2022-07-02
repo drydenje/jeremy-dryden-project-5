@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import articles from "fixtures/articles";
+// import articles from "fixtures/articles";
 
 const initialState = {
   keywords: {
