@@ -3,7 +3,7 @@ import articles from "fixtures/articles";
 
 const initialState = {
   keywords: {
-    Microsoft: articles,
+    // Microsoft: articles,
   },
   status: "idle", // idle, loading, succeeded, failed
   error: null,
@@ -53,7 +53,7 @@ export const feedSlice = createSlice({
         state.status = "succeeded";
         // add fetched articles to the object's array
         console.log("ACTION:", action);
-        console.log("STATE:", state);
+        // console.log("STATE:", state);
         console.log("Q+D:", query, data);
         state.keywords[query] = data;
       })
@@ -76,20 +76,23 @@ export const feedSlice = createSlice({
 
 export const fetchArticles = createAsyncThunk(
   "articles/fetchArticles",
-  async () => {
-    // console.log(query);
-    console.log("State:");
-    const query = "Apple";
+  async (query) => {
+    // console.log("QUERY:", query);
+    // console.log("FETCH ARTICLES ASYNC THUNK");
+    // const query = "Apple";
     const response = await fetch(
-      `${process.env.REACT_APP_FETCH_URL}search?q=${query}&max=${process.env.REACT_APP_MAX_ARTICLES}&token=${process.env.REACT_APP_GKEY}`
+      `${process.env.REACT_APP_FETCH_URL}search?q=${query}&lang=en&max=${process.env.REACT_APP_MAX_ARTICLES}&token=${process.env.REACT_APP_GKEY}`
     ).then((response) => response.json());
-
+    console.log("RES:", response.articles);
+    // const res = await articles;
+    // return res;
     // console.log("JSON:", JSON.stringify(articles));
-    return { articles };
-    // return {
-    // query: query,
-    // data: response.articles,
-    // }
+    // return { articles };
+    return {
+      query: query,
+      data: response.articles,
+      // data: response.articles,
+    };
   }
 );
 

@@ -5,6 +5,7 @@ import feedReducer, {
   // addSearchResults,
   // selectAllArticles,
   fetchArticles,
+  // checkArticles,
   selectMissingArticles,
 } from "state/feedSlice";
 // import feedReducer, { addArticles } from "state/feedSlice";
@@ -18,8 +19,10 @@ listenerMiddleware.startListening({
     // const articles = selectAllArticles(listenerApi.getState());
 
     const keywords = selectMissingArticles(listenerApi.getState());
-    console.log("KW:", keywords);
-    fetchArticles("Apple");
+    // console.log("KW:", keywords);
+    keywords.forEach((word) => {
+      listenerApi.dispatch(fetchArticles(word));
+    });
     // selectMissingArticles() <- make this in feedslice
     // dispatch addSearchResults <- adds the state to the keyword in feedslice
 
