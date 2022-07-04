@@ -21,7 +21,12 @@ export const feedSlice = createSlice({
 
       // all current keywords and articles
       let result = state;
-
+      if (action.payload.keywordArray.length > 3) {
+        console.log("Too many keywords");
+        return {
+          ...state,
+        };
+      }
       // for each url param passed with the payload
       action.payload.keywordArray.forEach((word) => {
         newKeywords[word] = startingState[word] || [];
